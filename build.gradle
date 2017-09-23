@@ -4,7 +4,7 @@ buildscript {
 		springBootVersion = '1.5.7.RELEASE'
 	}
 	repositories {
-		mavenCentral()
+		jcenter()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -29,7 +29,7 @@ compileTestKotlin {
 }
 
 repositories {
-	mavenCentral()
+	jcenter()
 }
 
 
