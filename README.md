@@ -1,6 +1,6 @@
-# kotlin dvd rental
+# Kotlin dvd rental
 
-- kotlin x spring boot x doma2
+- Kotlin x Spring Boot x Doma2
 - http://www.postgresqltutorial.com/postgresql-sample-database/ のサンプルデータベースを使います
 
 ## 起動
