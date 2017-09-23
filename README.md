@@ -8,13 +8,13 @@
 DB起動(dockerを使います）
 
 ```
-$ ./docker_build_db.sh
+$ ./boot-db.sh
 ```
 
 webサーバ起動
 
 ```
-$ ./gradlew clean bootRun
+$ ./boot-web.sh
 ```
 
 http://localhost:8080/api/v1/films

@@ -1,0 +1,4 @@
+SELECT
+  /*%expand*/*
+FROM
+  film
