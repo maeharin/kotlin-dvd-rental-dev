@@ -8,7 +8,7 @@ kotlin x spring boot x doma2
 $ ./gradlew clean bootRun
 ```
 
-localhost:8080
+http://localhost:8080/api/v1/films
 
 もう一つ別のターミナルを開いて
 
