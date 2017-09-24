@@ -97,6 +97,7 @@ task domagen {
 			url: dbUrl,
 			user: dbUser,
 			password: dbPassword,
+			templatePrimaryDir: 'src/main/resources/doma-gen-custom-templates'
 		) {
 			entityConfig(
 				packageName: "${packageName}.entity",
