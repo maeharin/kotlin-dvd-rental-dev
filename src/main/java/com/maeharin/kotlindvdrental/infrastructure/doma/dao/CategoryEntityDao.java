@@ -1,6 +1,7 @@
 package com.maeharin.kotlindvdrental.infrastructure.doma.dao;
 
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.CategoryEntity;
+import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Delete;
 import org.seasar.doma.Insert;
@@ -28,6 +29,10 @@ public interface CategoryEntityDao {
      */
     @Select
     List<CategoryEntity> selectAll();
+
+
+    @Select
+    List<CategoryEntity> selectByFilmId(Integer filmId);
 
     /**
      * @param entity

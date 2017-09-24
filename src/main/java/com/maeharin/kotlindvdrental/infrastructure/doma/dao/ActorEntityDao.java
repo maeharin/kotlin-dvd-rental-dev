@@ -29,6 +29,9 @@ public interface ActorEntityDao {
     @Select
     List<ActorEntity> selectAll();
 
+    @Select
+    List<ActorEntity> selectByFilmId(Integer filmId);
+
     /**
      * @param entity
      * @return affected rows
