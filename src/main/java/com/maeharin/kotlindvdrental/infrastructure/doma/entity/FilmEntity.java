@@ -2,7 +2,9 @@ package com.maeharin.kotlindvdrental.infrastructure.doma.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import org.seasar.doma.Column;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.seasar.doma.Entity;
 import org.seasar.doma.GeneratedValue;
 import org.seasar.doma.GenerationType;
@@ -26,13 +28,15 @@ public class FilmEntity {
     public String title;
 
     /** */
+    @Nullable
     public String description;
 
     /** */
+    @Nullable
     public String releaseYear;
 
     /** */
-    public Short languageId;
+    public Integer languageId;
 
     /** */
     public Short rentalDuration;
@@ -41,6 +45,7 @@ public class FilmEntity {
     public BigDecimal rentalRate;
 
     /** */
+    @Nullable
     public Short length;
 
     /** */

@@ -1,4 +1,0 @@
-select
-  /*%expand*/*
-from
-  film
