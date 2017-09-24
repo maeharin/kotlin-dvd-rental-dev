@@ -7,9 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 class FilmRepository(
     private val filmWithRelationDao: FilmWithRelationEntityDao,
-    private val languageRepository: LanguageRepository,
-    private val actorRepository: ActorRepository,
-    private val categoryRepository: CategoryRepository
 ) {
     fun findById(id: Int): Film? {
         val entities = filmWithRelationDao.selectById(id)
