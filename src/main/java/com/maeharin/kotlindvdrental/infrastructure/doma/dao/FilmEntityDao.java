@@ -9,7 +9,10 @@ import java.util.List;
 
 @ConfigAutowireable
 @Dao
-public interface FilmDao {
+public interface FilmEntityDao {
+    @Select
+    FilmEntity selectById(int filmId);
+
     @Select
     List<FilmEntity> selectAll();
 }
