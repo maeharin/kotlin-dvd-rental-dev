@@ -5,7 +5,7 @@ buildscript {
 		springBootDomaVersion = '1.1.1'
 		domaVersion = '2.17.0'
 		postgresqlVersion = '42.1.4'
-
+		domaGenVersion = '2.17.0'
 	}
 	repositories {
 		jcenter()
@@ -36,6 +36,10 @@ repositories {
 	jcenter()
 }
 
+configurations {
+	domaGenRuntime
+}
+
 // -------------------------------------------
 // for Doma2 with gradle
 // see: http://doma.readthedocs.io/ja/stable/build/#gradle
@@ -62,4 +66,51 @@ dependencies {
 	// -------------------------------------------
 	compile "org.seasar.doma.boot:doma-spring-boot-starter:${springBootDomaVersion}"
 	compile "org.seasar.doma:doma:${domaVersion}"
+
+	// -------------------------------------------
+	// Doma2 gen
+	// -------------------------------------------
+	domaGenRuntime "org.seasar.doma:doma-gen:${domaGenVersion}"
+	domaGenRuntime "org.postgresql:postgresql:${postgresqlVersion}"
 }
+
+
+//
+// Doma-Gen
+// DBのスキーマからDomaのEntity, Dao, SQLファイルを自動生成するタスク
+// see: http://doma-gen.readthedocs.io/ja/stable/gen/
+//
+task domagen {
+	doLast {
+		def dbHost = System.getenv('DB_HOST')
+		def dbName = System.getenv('DB_NAME')
+		def dbUser = System.getenv('DB_USER')
+		def dbPassword = System.getenv('DB_PASSWORD')
+		def dbUrl = "jdbc:postgresql://${dbHost}/${dbName}"
+
+		ant.taskdef(resource: 'domagentask.properties',
+					classpath: configurations.domaGenRuntime.asPath)
+
+		def packageName = "com.maeharin.kotlindvdrental.infrastructure.doma"
+
+		ant.gen(
+			url: dbUrl,
+			user: dbUser,
+			password: dbPassword,
+		) {
+			entityConfig(
+				packageName: "${packageName}.entity",
+				entitySuffix: "Entity",
+				overwrite: true,
+				namingType: "snake_upper_case",
+				useAccessor: false,
+				useListener: false,
+				showColumnName: false,
+				showDbComment: true
+			)
+			daoConfig(packageName: "${packageName}.dao")
+			sqlConfig()
+		}
+	}
+}
+
