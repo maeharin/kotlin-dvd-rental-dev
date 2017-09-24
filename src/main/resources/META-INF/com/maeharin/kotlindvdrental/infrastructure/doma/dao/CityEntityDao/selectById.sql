@@ -1,6 +1,6 @@
 select
   /*%expand*/*
 from
-  film
+  city
 where
-  film_id = /* filmId */1
+  city_id = /* cityId */1

@@ -1,6 +1,6 @@
 package com.maeharin.kotlindvdrental.infrastructure.doma.entity;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
@@ -11,50 +11,40 @@ import org.seasar.doma.Table;
 import org.seasar.doma.jdbc.entity.NamingType;
 
 /**
- * 映画
  */
 @Entity(naming = NamingType.SNAKE_UPPER_CASE)
-@Table(name = "film")
-public class FilmEntity {
+@Table(name = "customer")
+public class CustomerEntity {
 
     /** */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer filmId;
-
-    /** タイトル */
-    public String title;
+    public Integer customerId;
 
     /** */
-    public String description;
+    public Short storeId;
 
     /** */
-    public String releaseYear;
+    public String firstName;
 
     /** */
-    public Short languageId;
+    public String lastName;
 
     /** */
-    public Short rentalDuration;
+    public String email;
 
     /** */
-    public BigDecimal rentalRate;
+    public Short addressId;
 
     /** */
-    public Short length;
+    public Boolean activebool;
 
     /** */
-    public BigDecimal replacementCost;
-
-    /** */
-    public String rating;
+    public LocalDate createDate;
 
     /** */
     public LocalDateTime lastUpdate;
 
     /** */
-    public String specialFeatures;
-
-    /** */
-    public String fulltext;
+    public Integer active;
 }

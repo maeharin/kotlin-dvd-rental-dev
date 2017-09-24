@@ -1,4 +1,4 @@
 select
   /*%expand*/*
 from
-  film
+  address

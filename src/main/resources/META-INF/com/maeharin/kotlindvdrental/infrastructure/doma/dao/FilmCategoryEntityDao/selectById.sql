@@ -1,6 +1,8 @@
 select
   /*%expand*/*
 from
-  film
+  film_category
 where
   film_id = /* filmId */1
+  and
+  category_id = /* categoryId */1

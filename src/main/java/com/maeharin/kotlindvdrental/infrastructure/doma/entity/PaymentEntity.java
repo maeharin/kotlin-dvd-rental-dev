@@ -11,50 +11,28 @@ import org.seasar.doma.Table;
 import org.seasar.doma.jdbc.entity.NamingType;
 
 /**
- * 映画
  */
 @Entity(naming = NamingType.SNAKE_UPPER_CASE)
-@Table(name = "film")
-public class FilmEntity {
+@Table(name = "payment")
+public class PaymentEntity {
 
     /** */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer filmId;
-
-    /** タイトル */
-    public String title;
+    public Integer paymentId;
 
     /** */
-    public String description;
+    public Short customerId;
 
     /** */
-    public String releaseYear;
+    public Short staffId;
 
     /** */
-    public Short languageId;
+    public Integer rentalId;
 
     /** */
-    public Short rentalDuration;
+    public BigDecimal amount;
 
     /** */
-    public BigDecimal rentalRate;
-
-    /** */
-    public Short length;
-
-    /** */
-    public BigDecimal replacementCost;
-
-    /** */
-    public String rating;
-
-    /** */
-    public LocalDateTime lastUpdate;
-
-    /** */
-    public String specialFeatures;
-
-    /** */
-    public String fulltext;
+    public LocalDateTime paymentDate;
 }
