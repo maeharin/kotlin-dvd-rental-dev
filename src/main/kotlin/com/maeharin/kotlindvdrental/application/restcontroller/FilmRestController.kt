@@ -1,9 +1,9 @@
 package com.maeharin.kotlindvdrental.application.restcontroller
 
 import com.maeharin.kotlindvdrental.application.applicationservice.FilmApplicationService
-import com.maeharin.kotlindvdrental.application.restcontroller.param.FilmCreateParam
+import com.maeharin.kotlindvdrental.application.restcontroller.param.FilmRestParam
 import com.maeharin.kotlindvdrental.application.restcontroller.resource.FilmResource
-import com.maeharin.kotlindvdrental.domain.command.FilmCreateCommand
+import com.maeharin.kotlindvdrental.domain.command.FilmCommand
 import com.maeharin.kotlindvdrental.domain.repository.FilmRepository
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
@@ -23,14 +23,17 @@ class FilmRestController(
         = filmRepository.findById(id)?.let { FilmResource(it) } ?: throw RuntimeException("not found")
 
     @PostMapping
-    fun create(@RequestBody @Validated filmCreateParam: FilmCreateParam): Int {
-        val createCommand = FilmCreateCommand(filmCreateParam)
+    fun create(@RequestBody @Validated filmRestParam: FilmRestParam): Int {
+        val createCommand = FilmCommand(filmRestParam)
         return filmApplicationService.create(createCommand)
     }
 
     @PutMapping("{id}")
-    fun update(@RequestBody @Validated filmCreateParam: FilmCreateParam) {
-        val createCommand = FilmCreateCommand(filmCreateParam)
-        return filmApplicationService.update(createCommand)
+    fun update(
+        @PathVariable id: Int,
+        @RequestBody @Validated filmRestParam: FilmRestParam
+    ) {
+        val command = FilmCommand(filmRestParam).also { it.id = id }
+        return filmApplicationService.update(command)
     }
 }

@@ -1,6 +1,6 @@
 package com.maeharin.kotlindvdrental.domain.model
 
-import com.maeharin.kotlindvdrental.domain.command.FilmCreateCommand
+import com.maeharin.kotlindvdrental.domain.command.FilmCommand
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmEntity
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmWithRelationEntity
 import java.math.BigDecimal
@@ -33,7 +33,8 @@ class Film(
         categories = categories
     )
 
-    constructor(command: FilmCreateCommand, language: Language, actors: List<Actor>, categories: List<Category>): this(
+    constructor(command: FilmCommand, language: Language, actors: List<Actor>, categories: List<Category>): this(
+        id = command.id,
         title = command.title,
         description = command.description,
         releaseYear = command.releaseYear,

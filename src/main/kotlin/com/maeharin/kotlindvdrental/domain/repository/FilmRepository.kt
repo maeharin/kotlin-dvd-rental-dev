@@ -57,8 +57,8 @@ class FilmRepository(
     }
 
     fun update(film: Film) {
-        //// save film
-        //filmEntityDao.update(film.toEntity())
+        // save film
+        filmEntityDao.update(film.toEntity())
 
         //// delete all relations. then save new relations
         //filmActorEntityDao.deleteByFilmId(film.id)

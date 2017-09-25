@@ -1,6 +1,6 @@
 package com.maeharin.kotlindvdrental.application.applicationservice
 
-import com.maeharin.kotlindvdrental.domain.command.FilmCreateCommand
+import com.maeharin.kotlindvdrental.domain.command.FilmCommand
 import com.maeharin.kotlindvdrental.domain.model.Film
 import com.maeharin.kotlindvdrental.domain.repository.ActorRepository
 import com.maeharin.kotlindvdrental.domain.repository.CategoryRepository
@@ -17,7 +17,7 @@ class FilmApplicationService(
     private val categoryRepository: CategoryRepository
 ) {
     @Transactional
-    fun create(command: FilmCreateCommand): Int {
+    fun create(command: FilmCommand): Int {
         // TODO: 作成者を取得してセット
 
         val language   = languageRepository.findById(command.languageId) ?: throw RuntimeException("language not found")
@@ -33,7 +33,7 @@ class FilmApplicationService(
     }
 
     @Transactional
-    fun update(command: FilmCreateCommand) {
+    fun update(command: FilmCommand) {
         // TODO: 権限チェック
 
         val language   = languageRepository.findById(command.languageId) ?: throw RuntimeException("language not found")

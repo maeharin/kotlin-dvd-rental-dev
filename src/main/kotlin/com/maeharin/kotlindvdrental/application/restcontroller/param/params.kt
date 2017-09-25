@@ -2,7 +2,8 @@ package com.maeharin.kotlindvdrental.application.restcontroller.param
 
 import java.math.BigDecimal
 
-data class FilmCreateParam(
+data class FilmRestParam(
+    var id: Int? = null,
     val title: String,
     val description: String?,
     val releaseYear: Int?,

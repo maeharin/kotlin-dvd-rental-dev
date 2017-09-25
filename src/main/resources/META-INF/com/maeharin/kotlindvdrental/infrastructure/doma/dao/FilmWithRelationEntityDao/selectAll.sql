@@ -37,3 +37,5 @@ from
         left outer join category as C
           on FC.category_id = C.category_id
   ) as JOINED
+order by
+  film_id desc, category_id asc, actor_id asc
