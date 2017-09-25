@@ -27,4 +27,10 @@ class FilmRestController(
         val createCommand = FilmCreateCommand(filmCreateParam)
         return filmApplicationService.create(createCommand)
     }
+
+    @PutMapping
+    fun update(@RequestBody @Validated filmCreateParam: FilmCreateParam) {
+        val createCommand = FilmCreateCommand(filmCreateParam)
+        return filmApplicationService.update(createCommand)
+    }
 }

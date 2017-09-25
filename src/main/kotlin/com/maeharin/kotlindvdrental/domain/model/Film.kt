@@ -4,19 +4,17 @@ import com.maeharin.kotlindvdrental.domain.command.FilmCreateCommand
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmEntity
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmWithRelationEntity
 import java.math.BigDecimal
+import java.time.LocalDateTime
 
 class Film(
     val id: Int? = null,
     val title: String,
     val description: String?,
-    val releaseYear: String?,
+    val releaseYear: Int?,
     val rentalDuration: Short,
     val rentalRate: BigDecimal,
     val length: Short?,
     val replacementCost: BigDecimal,
-    val rating: String,
-    //val specialFeatures: List<String>,
-    //val fulltext: Map<String, String>,
     val language: Language,
     val actors: List<Actor>,
     val categories: List<Category>
@@ -30,7 +28,6 @@ class Film(
         rentalRate = entity.rentalRate,
         length = entity.length,
         replacementCost = entity.replacementCost,
-        rating = entity.rating,
         language = language,
         actors = actors,
         categories = categories
@@ -44,7 +41,6 @@ class Film(
         rentalRate = command.rentalRate,
         length = command.length,
         replacementCost = command.replacementCost,
-        rating = command.rating,
         language = language,
         actors = actors,
         categories = categories
@@ -52,6 +48,7 @@ class Film(
 
     fun toEntity(): FilmEntity {
         return FilmEntity().also { entity ->
+            entity.filmId = id
             entity.title = title
             entity.description = description
             entity.releaseYear = releaseYear
@@ -59,8 +56,8 @@ class Film(
             entity.rentalRate = rentalRate
             entity.length = length
             entity.replacementCost = replacementCost
-            entity.rating = rating
             entity.languageId = language.id
+            entity.lastUpdate = LocalDateTime.now()
         }
     }
 

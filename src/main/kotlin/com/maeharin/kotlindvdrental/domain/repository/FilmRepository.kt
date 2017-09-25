@@ -28,6 +28,17 @@ class FilmRepository(
     fun store(film: Film): Int {
         // TODO: ビジネスロジックバリデーション
 
+        val entity = film.toEntity()
+        println("-------------------------------------")
+        println(entity.title)
+        println(entity.releaseYear)
+        if (entity.releaseYear == null) {
+            println("releaseYearはnullです")
+        } else {
+            println("releaseYearはnullではないです")
+        }
+        println("-------------------------------------")
+
         // save film
         val filmId = filmEntityDao.insert(film.toEntity())
 
@@ -50,5 +61,31 @@ class FilmRepository(
         }
 
         return filmId
+    }
+
+    fun update(film: Film) {
+        //// save film
+        //filmEntityDao.update(film.toEntity())
+
+        //// delete all relations. then save new relations
+        //filmActorEntityDao.deleteByFilmId(film.id)
+
+        //film.actors.forEach { actor ->
+        //    filmActorEntityDao.insert(FilmActorEntity().also { e ->
+        //        e.filmId = film.id
+        //        e.actorId = actor.id
+        //        e.lastUpdate = LocalDateTime.now()
+        //    })
+        //}
+
+        //filmCategoryEntityDao.deleteByFilmId(film.id)
+
+        //film.categories.forEach { category ->
+        //    filmCategoryEntityDao.insert(FilmCategoryEntity().also { e ->
+        //        e.filmId = film.id
+        //        e.categoryId = category.id
+        //        e.lastUpdate = LocalDateTime.now()
+        //    })
+        //}
     }
 }

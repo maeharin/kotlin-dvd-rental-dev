@@ -7,6 +7,7 @@ import com.maeharin.kotlindvdrental.domain.repository.CategoryRepository
 import com.maeharin.kotlindvdrental.domain.repository.FilmRepository
 import com.maeharin.kotlindvdrental.domain.repository.LanguageRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class FilmApplicationService(
@@ -15,6 +16,7 @@ class FilmApplicationService(
     private val actorRepository: ActorRepository,
     private val categoryRepository: CategoryRepository
 ) {
+    @Transactional
     fun create(command: FilmCreateCommand): Int {
         // TODO: 作成者を取得してセット
 
@@ -28,5 +30,19 @@ class FilmApplicationService(
         // TODO: mail送信
 
         return filmId
+    }
+
+    @Transactional
+    fun update(command: FilmCreateCommand) {
+        // TODO: 権限チェック
+
+        val language   = languageRepository.findById(command.languageId) ?: throw RuntimeException("language not found")
+        val actors     = actorRepository.findByIds(command.actorIds)
+        val categories = categoryRepository.findByIds(command.categoryIds)
+
+        val film = Film(command = command, language = language, actors = actors, categories = categories)
+        filmRepository.update(film)
+
+        // TODO: mail送信
     }
 }

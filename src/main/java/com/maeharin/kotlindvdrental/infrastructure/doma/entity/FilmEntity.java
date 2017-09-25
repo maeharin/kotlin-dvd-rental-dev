@@ -1,6 +1,7 @@
 package com.maeharin.kotlindvdrental.infrastructure.doma.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.jetbrains.annotations.NotNull;
@@ -33,7 +34,7 @@ public class FilmEntity {
 
     /** */
     @Nullable
-    public String releaseYear;
+    public Integer releaseYear;
 
     /** */
     public Integer languageId;
@@ -52,14 +53,5 @@ public class FilmEntity {
     public BigDecimal replacementCost;
 
     /** */
-    public String rating;
-
-    /** */
     public LocalDateTime lastUpdate;
-
-    /** */
-    public String specialFeatures;
-
-    /** */
-    public String fulltext;
 }
