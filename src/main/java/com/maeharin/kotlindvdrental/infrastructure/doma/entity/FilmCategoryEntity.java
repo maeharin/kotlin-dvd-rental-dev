@@ -15,11 +15,11 @@ public class FilmCategoryEntity {
 
     /** */
     @Id
-    public Short filmId;
+    public Integer filmId;
 
     /** */
     @Id
-    public Short categoryId;
+    public Integer categoryId;
 
     /** */
     public LocalDateTime lastUpdate;

@@ -3,19 +3,34 @@ package com.maeharin.kotlindvdrental.application.restcontroller.resource
 import com.maeharin.kotlindvdrental.domain.model.Actor
 import com.maeharin.kotlindvdrental.domain.model.Category
 import com.maeharin.kotlindvdrental.domain.model.Film
+import com.maeharin.kotlindvdrental.domain.model.Language
 import java.time.LocalDateTime
 
 data class FilmResource(
     val id: Int,
     val title: String,
+    val language: LanguageResource,
     val actors: List<ActorResource>,
     val categories: List<CategoryResource>
 ) {
     constructor(film: Film) : this(
-        id = film.id,
+        id = film.id!!,
         title = film.title,
+        language = LanguageResource(film.language),
         actors = film.actors.map(::ActorResource),
         categories = film.categories.map(::CategoryResource)
+    )
+}
+
+data class LanguageResource(
+        val id: Int,
+        val name: String,
+        val updatedAt: LocalDateTime
+) {
+    constructor(language: Language) : this(
+        id = language.id,
+        name = language.name,
+        updatedAt = language.updatedAt
     )
 }
 

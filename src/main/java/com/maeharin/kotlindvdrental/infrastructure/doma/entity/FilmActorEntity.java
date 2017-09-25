@@ -15,11 +15,11 @@ public class FilmActorEntity {
 
     /** */
     @Id
-    public Short actorId;
+    public Integer actorId;
 
     /** */
     @Id
-    public Short filmId;
+    public Integer filmId;
 
     /** */
     public LocalDateTime lastUpdate;

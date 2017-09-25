@@ -57,6 +57,11 @@ dependencies {
 	//testCompile('org.springframework.security:spring-security-test')
 
 	// -------------------------------------------
+	// jackson
+	// -------------------------------------------
+	compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0"
+
+	// -------------------------------------------
 	// dababase
 	// -------------------------------------------
 	compile "org.postgresql:postgresql:${postgresqlVersion}"

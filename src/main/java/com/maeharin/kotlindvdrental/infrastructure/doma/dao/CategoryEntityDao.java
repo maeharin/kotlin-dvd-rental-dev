@@ -34,6 +34,9 @@ public interface CategoryEntityDao {
     @Select
     List<CategoryEntity> selectByFilmId(Integer filmId);
 
+    @Select
+    List<CategoryEntity> selectByIds(List<Integer> categoryIds);
+
     /**
      * @param entity
      * @return affected rows

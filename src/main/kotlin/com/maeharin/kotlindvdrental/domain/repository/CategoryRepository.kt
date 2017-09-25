@@ -11,5 +11,8 @@ class CategoryRepository(
 ) {
     fun findByFilmId(filmId: Int): List<Category>
         = categoryEntityDao.selectByFilmId(filmId).map(::Category)
+
+    fun findByIds(ids: List<Int>): List<Category>
+        = categoryEntityDao.selectByIds(ids).map(::Category)
 }
 

@@ -1,11 +1,12 @@
 package com.maeharin.kotlindvdrental.domain.model
 
+import com.maeharin.kotlindvdrental.domain.command.FilmCreateCommand
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmEntity
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmWithRelationEntity
 import java.math.BigDecimal
 
 class Film(
-    val id: Int,
+    val id: Int? = null,
     val title: String,
     val description: String?,
     val releaseYear: String?,
@@ -34,6 +35,35 @@ class Film(
         actors = actors,
         categories = categories
     )
+
+    constructor(command: FilmCreateCommand, language: Language, actors: List<Actor>, categories: List<Category>): this(
+        title = command.title,
+        description = command.description,
+        releaseYear = command.releaseYear,
+        rentalDuration = command.rentalDuration,
+        rentalRate = command.rentalRate,
+        length = command.length,
+        replacementCost = command.replacementCost,
+        rating = command.rating,
+        language = language,
+        actors = actors,
+        categories = categories
+    )
+
+    fun toEntity(): FilmEntity {
+        return FilmEntity().also { entity ->
+            entity.title = title
+            entity.description = description
+            entity.releaseYear = releaseYear
+            entity.rentalDuration = rentalDuration
+            entity.rentalRate = rentalRate
+            entity.length = length
+            entity.replacementCost = replacementCost
+            entity.rating = rating
+            entity.languageId = language.id
+        }
+    }
+
 
     companion object {
         fun createByFilmWithRelationEntities(entities: List<FilmWithRelationEntity>): List<Film> {

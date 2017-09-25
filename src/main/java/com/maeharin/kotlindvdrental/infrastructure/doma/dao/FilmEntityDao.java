@@ -1,7 +1,6 @@
 package com.maeharin.kotlindvdrental.infrastructure.doma.dao;
 
-import com.maeharin.kotlindvdrental.infrastructure.doma.entity.ActorEntity;
-import org.jetbrains.annotations.NotNull;
+import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmEntity;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Delete;
 import org.seasar.doma.Insert;
@@ -15,45 +14,39 @@ import java.util.List;
  */
 @ConfigAutowireable
 @Dao
-public interface ActorEntityDao {
+public interface FilmEntityDao {
 
     /**
-     * @param actorId
-     * @return the ActorEntity entity
+     * @param filmId
+     * @return the FilmEntity entity
      */
     @Select
-    ActorEntity selectById(Integer actorId);
+    FilmEntity selectById(Integer filmId);
 
     /**
-     * @return the ActorEntity entity list
+     * @return the FilmEntity entity list
      */
     @Select
-    List<ActorEntity> selectAll();
-
-    @Select
-    List<ActorEntity> selectByFilmId(Integer filmId);
-
-    @Select
-    List<ActorEntity> selectByIds(List<Integer> actorIds);
+    List<FilmEntity> selectAll();
 
     /**
      * @param entity
      * @return affected rows
      */
     @Insert
-    int insert(ActorEntity entity);
+    int insert(FilmEntity entity);
 
     /**
      * @param entity
      * @return affected rows
      */
     @Update
-    int update(ActorEntity entity);
+    int update(FilmEntity entity);
 
     /**
      * @param entity
      * @return affected rows
      */
     @Delete
-    int delete(ActorEntity entity);
+    int delete(FilmEntity entity);
 }
