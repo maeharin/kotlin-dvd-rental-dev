@@ -16,6 +16,7 @@ class FilmRepository(
     private val filmCategoryEntityDao: FilmCategoryEntityDao
 ) {
     fun findById(id: Int): Film? {
+        // TODO: 存在しない場合
         val entities = filmWithRelationDao.selectById(id)
         return Film.createByFilmWithRelationEntities(entities).first()
     }
@@ -80,5 +81,13 @@ class FilmRepository(
                 e.lastUpdate = LocalDateTime.now()
             })
         }
+    }
+
+    fun delete(id: Int) {
+        // 子テーブルから削除
+        filmActorEntityDao.deleteByFilmId(id)
+        filmCategoryEntityDao.deleteByFilmId(id)
+        // 親テーブル削除
+        filmEntityDao.deleteById(id)
     }
 }

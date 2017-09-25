@@ -35,6 +35,7 @@ class FilmApplicationService(
     @Transactional
     fun update(command: FilmCommand) {
         // TODO: 権限チェック
+        // TODO: レコード存在チェック
 
         val language   = languageRepository.findById(command.languageId) ?: throw RuntimeException("language not found")
         val actors     = actorRepository.findByIds(command.actorIds)
@@ -44,5 +45,12 @@ class FilmApplicationService(
         filmRepository.update(film)
 
         // TODO: mail送信
+    }
+
+    @Transactional
+    fun delete(id: Int) {
+        // TODO: 権限チェック
+        // TODO: レコード存在チェック
+        filmRepository.delete(id)
     }
 }

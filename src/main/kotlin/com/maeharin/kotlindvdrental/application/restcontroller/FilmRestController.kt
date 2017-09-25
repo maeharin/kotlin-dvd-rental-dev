@@ -36,4 +36,9 @@ class FilmRestController(
         val command = FilmCommand(filmRestParam).also { it.id = id }
         return filmApplicationService.update(command)
     }
+
+    @DeleteMapping("{id}")
+    fun delete(@PathVariable id: Int) {
+        return filmApplicationService.delete(id)
+    }
 }

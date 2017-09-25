@@ -49,4 +49,7 @@ public interface FilmEntityDao {
      */
     @Delete
     int delete(FilmEntity entity);
+
+    @Delete(sqlFile = true)
+    int deleteById(Integer filmId);
 }
