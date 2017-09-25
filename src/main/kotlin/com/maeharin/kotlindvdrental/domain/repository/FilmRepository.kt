@@ -25,7 +25,6 @@ class FilmRepository(
         return Film.createByFilmWithRelationEntities(entities)
     }
 
-    // TOOD: 引数はcommandではなく、domain objectであるfilmでは？
     fun store(film: Film): Int {
         // TODO: ビジネスロジックバリデーション
 
