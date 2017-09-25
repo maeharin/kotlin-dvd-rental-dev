@@ -108,7 +108,7 @@ task domagen {
 				packageName: "${packageName}.entity",
 				entitySuffix: "Entity",
 				overwrite: true,
-				namingType: "snake_upper_case",
+				namingType: "snake_lower_case",
 				useAccessor: false,
 				useListener: false,
 				showColumnName: false,

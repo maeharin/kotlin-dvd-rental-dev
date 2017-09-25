@@ -12,7 +12,7 @@ import org.seasar.doma.jdbc.entity.NamingType;
 
 /**
  */
-@Entity(naming = NamingType.SNAKE_UPPER_CASE)
+@Entity(naming = NamingType.SNAKE_LOWER_CASE)
 @Table(name = "payment")
 public class PaymentEntity {
 
