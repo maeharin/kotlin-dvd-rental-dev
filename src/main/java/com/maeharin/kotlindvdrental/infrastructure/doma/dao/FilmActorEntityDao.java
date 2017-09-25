@@ -1,6 +1,7 @@
 package com.maeharin.kotlindvdrental.infrastructure.doma.dao;
 
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmActorEntity;
+import org.jetbrains.annotations.Nullable;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Delete;
 import org.seasar.doma.Insert;
@@ -50,4 +51,7 @@ public interface FilmActorEntityDao {
      */
     @Delete
     int delete(FilmActorEntity entity);
+
+    @Delete(sqlFile = true)
+    int deleteByFilmId(Integer filmId);
 }

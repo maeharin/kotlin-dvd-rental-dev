@@ -60,25 +60,25 @@ class FilmRepository(
         // save film
         filmEntityDao.update(film.toEntity())
 
-        //// delete all relations. then save new relations
-        //filmActorEntityDao.deleteByFilmId(film.id)
+        // delete all relations. then save new relations
+        filmActorEntityDao.deleteByFilmId(film.id)
 
-        //film.actors.forEach { actor ->
-        //    filmActorEntityDao.insert(FilmActorEntity().also { e ->
-        //        e.filmId = film.id
-        //        e.actorId = actor.id
-        //        e.lastUpdate = LocalDateTime.now()
-        //    })
-        //}
+        film.actors.forEach { actor ->
+            filmActorEntityDao.insert(FilmActorEntity().also { e ->
+                e.filmId = film.id
+                e.actorId = actor.id
+                e.lastUpdate = LocalDateTime.now()
+            })
+        }
 
-        //filmCategoryEntityDao.deleteByFilmId(film.id)
+        filmCategoryEntityDao.deleteByFilmId(film.id)
 
-        //film.categories.forEach { category ->
-        //    filmCategoryEntityDao.insert(FilmCategoryEntity().also { e ->
-        //        e.filmId = film.id
-        //        e.categoryId = category.id
-        //        e.lastUpdate = LocalDateTime.now()
-        //    })
-        //}
+        film.categories.forEach { category ->
+            filmCategoryEntityDao.insert(FilmCategoryEntity().also { e ->
+                e.filmId = film.id
+                e.categoryId = category.id
+                e.lastUpdate = LocalDateTime.now()
+            })
+        }
     }
 }
