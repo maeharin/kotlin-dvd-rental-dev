@@ -14,11 +14,9 @@ import org.seasar.doma.jdbc.entity.NamingType;
 public class FilmCategoryEntity {
 
     /** */
-    @Id
     public Integer filmId;
 
     /** */
-    @Id
     public Integer categoryId;
 
     /** */

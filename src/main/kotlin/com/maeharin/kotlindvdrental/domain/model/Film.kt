@@ -70,29 +70,38 @@ class Film(
                     .map { filmEntities ->
                         val filmEntity = filmEntities.first()
 
-                        Film(
-                            entity = filmEntity,
-                            language = Language(
-                                id = filmEntity.languageId,
-                                name = filmEntity.languageName,
-                                updatedAt = filmEntity.languageLastUpdate
-                            ),
-                            actors = filmEntities.distinctBy { it.actorId }.map {
+                        val language = Language(
+                            id = filmEntity.languageId,
+                            name = filmEntity.languageName,
+                            updatedAt = filmEntity.languageLastUpdate
+                        )
+
+                        val actors = if (filmEntities.all { it.actorId == null }) {
+                            emptyList()
+                        } else {
+                            filmEntities.distinctBy { it.actorId }.map {
                                 Actor(
                                     id = it.actorId,
                                     firstName = it.actorFirstName,
                                     lastName = it.actorLastName,
                                     updatedAt = it.actorLastUpdate
                                 )
-                            },
-                            categories = filmEntities.distinctBy { it.categoryId }.map {
+                            }
+                        }
+
+                        val categories = if (filmEntities.all { it.categoryId == null }) {
+                            emptyList()
+                        } else {
+                            filmEntities.distinctBy { it.categoryId }.map {
                                 Category(
                                     id = it.categoryId,
                                     name = it.categoryName,
                                     updatedAt = it.categoryLastUpdate
                                 )
                             }
-                        )
+                        }
+
+                        Film(entity = filmEntity, language = language, actors = actors, categories = categories)
                     }
         }
 

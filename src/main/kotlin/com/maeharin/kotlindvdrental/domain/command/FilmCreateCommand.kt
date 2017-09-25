@@ -12,8 +12,8 @@ data class FilmCreateCommand(
     val length: Short?,
     val replacementCost: BigDecimal,
     val languageId: Int,
-    val actorIds: List<Int>,
-    val categoryIds: List<Int>
+    val actorIds: List<Int> = emptyList(),
+    val categoryIds: List<Int> = emptyList()
 ) {
     constructor(param: FilmCreateParam) : this(
         title = param.title,

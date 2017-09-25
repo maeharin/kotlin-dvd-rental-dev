@@ -28,19 +28,12 @@ class FilmRepository(
     fun store(film: Film): Int {
         // TODO: ビジネスロジックバリデーション
 
-        val entity = film.toEntity()
-        println("-------------------------------------")
-        println(entity.title)
-        println(entity.releaseYear)
-        if (entity.releaseYear == null) {
-            println("releaseYearはnullです")
-        } else {
-            println("releaseYearはnullではないです")
-        }
-        println("-------------------------------------")
-
         // save film
-        val filmId = filmEntityDao.insert(film.toEntity())
+        val filmEntity = film.toEntity()
+
+        filmEntityDao.insert(filmEntity)
+
+        val filmId = filmEntity.filmId
 
         // save film_actor relations
         film.actors.forEach { actor ->
