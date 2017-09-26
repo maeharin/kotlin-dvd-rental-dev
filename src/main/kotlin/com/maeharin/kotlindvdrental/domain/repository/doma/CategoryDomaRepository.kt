@@ -1,4 +1,4 @@
-package com.maeharin.kotlindvdrental.domain.repository
+package com.maeharin.kotlindvdrental.domain.repository.doma
 
 import com.maeharin.kotlindvdrental.domain.model.Actor
 import com.maeharin.kotlindvdrental.domain.model.Category
@@ -6,7 +6,7 @@ import com.maeharin.kotlindvdrental.infrastructure.doma.dao.CategoryEntityDao
 import org.springframework.stereotype.Repository
 
 @Repository
-class CategoryRepository(
+class CategoryDomaRepository(
     private val categoryEntityDao: CategoryEntityDao
 ) {
     fun findByFilmId(filmId: Int): List<Category>

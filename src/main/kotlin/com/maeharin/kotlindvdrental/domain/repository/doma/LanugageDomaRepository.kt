@@ -1,4 +1,4 @@
-package com.maeharin.kotlindvdrental.domain.repository
+package com.maeharin.kotlindvdrental.domain.repository.doma
 
 import com.maeharin.kotlindvdrental.domain.model.Language
 import com.maeharin.kotlindvdrental.infrastructure.doma.dao.LanguageEntityDao

@@ -2,21 +2,21 @@ package com.maeharin.kotlindvdrental.application.applicationservice
 
 import com.maeharin.kotlindvdrental.domain.command.FilmCommand
 import com.maeharin.kotlindvdrental.domain.model.Film
-import com.maeharin.kotlindvdrental.domain.repository.ActorRepository
-import com.maeharin.kotlindvdrental.domain.repository.CategoryRepository
-import com.maeharin.kotlindvdrental.domain.repository.FilmRepository
-import com.maeharin.kotlindvdrental.domain.repository.LanguageRepository
-import com.maeharin.kotlindvdrental.domain.repository.elasticsearch.ElasticSearchFilmRepository
+import com.maeharin.kotlindvdrental.domain.repository.doma.ActorDomaRepository
+import com.maeharin.kotlindvdrental.domain.repository.doma.CategoryDomaRepository
+import com.maeharin.kotlindvdrental.domain.repository.doma.FilmDomaRepository
+import com.maeharin.kotlindvdrental.domain.repository.doma.LanguageRepository
+import com.maeharin.kotlindvdrental.domain.repository.elasticsearch.FilmElasticSearchRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class FilmApplicationService(
-    private val filmRepository: FilmRepository,
+    private val filmRepository: FilmDomaRepository,
     private val languageRepository: LanguageRepository,
-    private val actorRepository: ActorRepository,
-    private val categoryRepository: CategoryRepository,
-    private val elasticSearchFilmRepository: ElasticSearchFilmRepository
+    private val actorRepository: ActorDomaRepository,
+    private val categoryRepository: CategoryDomaRepository,
+    private val filmElasticSearchRepository: FilmElasticSearchRepository
 ) {
     @Transactional
     fun create(command: FilmCommand): Int {
@@ -58,6 +58,6 @@ class FilmApplicationService(
 
     fun indexToElasticSearch() {
         val films = filmRepository.findAll()
-        elasticSearchFilmRepository.bulkIndex(films)
+        filmElasticSearchRepository.bulkIndex(films)
     }
 }

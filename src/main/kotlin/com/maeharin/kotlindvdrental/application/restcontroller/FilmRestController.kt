@@ -4,8 +4,8 @@ import com.maeharin.kotlindvdrental.application.applicationservice.FilmApplicati
 import com.maeharin.kotlindvdrental.application.restcontroller.param.FilmRestParam
 import com.maeharin.kotlindvdrental.application.restcontroller.resource.FilmResource
 import com.maeharin.kotlindvdrental.domain.command.FilmCommand
-import com.maeharin.kotlindvdrental.domain.repository.FilmRepository
-import com.maeharin.kotlindvdrental.domain.repository.elasticsearch.ElasticSearchFilmRepository
+import com.maeharin.kotlindvdrental.domain.repository.doma.FilmDomaRepository
+import com.maeharin.kotlindvdrental.domain.repository.elasticsearch.FilmElasticSearchRepository
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/v1/films")
 class FilmRestController(
     private val filmApplicationService: FilmApplicationService,
-    private val filmRepository: FilmRepository,
-    private val elasticSearchFilmRepository: ElasticSearchFilmRepository
+    private val filmRepository: FilmDomaRepository,
+    private val filmElasticSearchRepository: FilmElasticSearchRepository
 ) {
     /**
      * 一覧
@@ -35,7 +35,7 @@ class FilmRestController(
      */
     @GetMapping("search")
     fun search(): List<FilmResource>
-        = elasticSearchFilmRepository.search().map(::FilmResource)
+        = filmElasticSearchRepository.search().map(::FilmResource)
 
     /**
      * 作成

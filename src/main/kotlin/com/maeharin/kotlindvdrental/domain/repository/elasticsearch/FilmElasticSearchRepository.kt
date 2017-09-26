@@ -15,7 +15,7 @@ import org.elasticsearch.search.builder.SearchSourceBuilder
 import org.springframework.stereotype.Repository
 
 @Repository
-class ElasticSearchFilmRepository (
+class FilmElasticSearchRepository(
     val objectMapper: ObjectMapper,
     val elasticSearchConfig: ElasticSearchConfig
 ){

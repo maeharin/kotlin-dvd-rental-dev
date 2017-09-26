@@ -1,4 +1,4 @@
-package com.maeharin.kotlindvdrental.domain.repository
+package com.maeharin.kotlindvdrental.domain.repository.doma
 
 import com.maeharin.kotlindvdrental.domain.model.Film
 import com.maeharin.kotlindvdrental.infrastructure.doma.dao.*
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository
 import java.time.LocalDateTime
 
 @Repository
-class FilmRepository(
+class FilmDomaRepository(
     private val filmWithRelationDao: FilmWithRelationEntityDao,
     private val filmEntityDao: FilmEntityDao,
     private val languageEntityDao: LanguageEntityDao,
