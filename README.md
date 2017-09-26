@@ -2,6 +2,12 @@
 
 - Kotlin x Spring Boot x Doma2
 - http://www.postgresqltutorial.com/postgresql-sample-database/ のサンプルデータベースを使います
+- DBにpostgres、検索にelasticsearch、キャッシュにredisを使っています
+  - spring boot
+  - doma2
+  - postgres
+  - elasticsearch
+  - redis
 
 ## 起動
 
