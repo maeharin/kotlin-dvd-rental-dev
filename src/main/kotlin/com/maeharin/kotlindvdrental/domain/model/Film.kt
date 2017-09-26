@@ -1,6 +1,7 @@
 package com.maeharin.kotlindvdrental.domain.model
 
 import com.maeharin.kotlindvdrental.domain.command.FilmCommand
+import com.maeharin.kotlindvdrental.domain.repository.elasticsearch.FilmElasticSearchSource
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmEntity
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmWithRelationEntity
 import java.math.BigDecimal
@@ -19,6 +20,9 @@ class Film(
     val actors: List<Actor>,
     val categories: List<Category>
 ) {
+    /**
+     * DomaのEntityからインスタンス生成
+     */
     constructor(entity: FilmEntity, language: Language, actors: List<Actor>, categories: List<Category>): this(
         id = entity.filmId,
         title = entity.title,
@@ -33,6 +37,9 @@ class Film(
         categories = categories
     )
 
+    /**
+     * コマンドからインスタンス生成
+     */
     constructor(command: FilmCommand, language: Language, actors: List<Actor>, categories: List<Category>): this(
         id = command.id,
         title = command.title,
@@ -45,6 +52,40 @@ class Film(
         language = language,
         actors = actors,
         categories = categories
+    )
+
+    /**
+     * ElasticSearchのSrouceを表すDTOからインスタンス生成
+     */
+    constructor(esSource: FilmElasticSearchSource): this(
+        id = esSource.id,
+        title = esSource.title,
+        description = esSource.description,
+        releaseYear = esSource.releaseYear,
+        rentalDuration = esSource.rentalDuration,
+        rentalRate = esSource.rentalRate,
+        length = esSource.length,
+        replacementCost = esSource.replacementCost,
+        language = Language(
+            id = esSource.language.id,
+            name = esSource.language.name,
+            updatedAt = esSource.language.updatedAt
+        ),
+        actors = esSource.actors.map { a ->
+            Actor(
+                id = a.id,
+                firstName = a.firstName,
+                lastName = a.lastName,
+                updatedAt = a.updatedAt
+            )
+        },
+        categories = esSource.categories.map { c ->
+            Category(
+                id = c.id,
+                name = c.name,
+                updatedAt = c.updatedAt
+            )
+        }
     )
 
     fun toEntity(): FilmEntity {

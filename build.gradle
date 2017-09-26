@@ -6,6 +6,7 @@ buildscript {
 		domaVersion = '2.17.0'
 		postgresqlVersion = '42.1.4'
 		domaGenVersion = '2.17.0'
+		elasticsearchVersion = '5.6.1'
 	}
 	repositories {
 		jcenter()
@@ -59,7 +60,13 @@ dependencies {
 	// -------------------------------------------
 	// jackson
 	// -------------------------------------------
+	// kotlinでjacksonを扱いやすくする
 	compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0"
+
+	// jsr310(LocalDateTimeなど）をjacksonで扱えるようにする
+	// see: http://blog.rakugakibox.net/entry/2015/12/04/springboot-with-java8time
+	compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.9'
+
 
 	// -------------------------------------------
 	// dababase
@@ -71,6 +78,12 @@ dependencies {
 	// -------------------------------------------
 	compile "org.seasar.doma.boot:doma-spring-boot-starter:${springBootDomaVersion}"
 	compile "org.seasar.doma:doma:${domaVersion}"
+
+	// -------------------------------------------
+	// elasticsearch
+	// -------------------------------------------
+	compile "org.elasticsearch:elasticsearch:${elasticsearchVersion}"
+	compile "org.elasticsearch.client:elasticsearch-rest-high-level-client:${elasticsearchVersion}"
 
 	// -------------------------------------------
 	// Doma2 gen

@@ -6,6 +6,7 @@ import com.maeharin.kotlindvdrental.domain.repository.ActorRepository
 import com.maeharin.kotlindvdrental.domain.repository.CategoryRepository
 import com.maeharin.kotlindvdrental.domain.repository.FilmRepository
 import com.maeharin.kotlindvdrental.domain.repository.LanguageRepository
+import com.maeharin.kotlindvdrental.domain.repository.elasticsearch.ElasticSearchFilmRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -14,7 +15,8 @@ class FilmApplicationService(
     private val filmRepository: FilmRepository,
     private val languageRepository: LanguageRepository,
     private val actorRepository: ActorRepository,
-    private val categoryRepository: CategoryRepository
+    private val categoryRepository: CategoryRepository,
+    private val elasticSearchFilmRepository: ElasticSearchFilmRepository
 ) {
     @Transactional
     fun create(command: FilmCommand): Int {
@@ -52,5 +54,10 @@ class FilmApplicationService(
         // TODO: 権限チェック
         // TODO: レコード存在チェック
         filmRepository.delete(id)
+    }
+
+    fun indexToElasticSearch() {
+        val films = filmRepository.findAll()
+        elasticSearchFilmRepository.bulkIndex(films)
     }
 }
