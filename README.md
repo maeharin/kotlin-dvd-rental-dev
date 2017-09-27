@@ -1,13 +1,13 @@
 # Kotlin dvd rental
 
-- Kotlin x Spring Boot x Doma2
+- Kotlin x Spring Boot x Doma2のサンプルプロジェクトです
 - http://www.postgresqltutorial.com/postgresql-sample-database/ のサンプルデータベースを使います
-- DBにpostgres、検索にelasticsearch、キャッシュにredisを使っています
+- DBにpostgres、検索にelasticsearchを使っています
   - spring boot
   - doma2
   - postgres
   - elasticsearch
-  - redis
+  - redis（作成中）
 
 ## 起動
 
@@ -36,7 +36,7 @@ http://localhost:8080/api/v1/films
 $ docker exec -it dvd-rental-postgres-container psql -U postgres dvdrental
 
 # redis
-$ docker exec -it dvd-rental-redis-container redis-cli
+# $ docker exec -it dvd-rental-redis-container redis-cli
 ```
 
 ### kibana
