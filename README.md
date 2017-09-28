@@ -25,7 +25,7 @@ webサーバ起動（別のターミナルで）
 $ ./boot-web.sh
 ```
 
-http://localhost:8080/api/v1/films
+http://localhost:8080/swagger-ui.html
 
 ## TIPS
 
