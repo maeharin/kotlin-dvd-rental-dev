@@ -7,6 +7,8 @@ buildscript {
 		postgresqlVersion = '42.1.4'
 		domaGenVersion = '2.17.0'
 		elasticsearchVersion = '5.6.1'
+		springfoxSwaggerVersion = '2.7.0'
+		swaggerCoreVersion = '1.5.16'
 	}
 	repositories {
 		jcenter()
@@ -84,6 +86,14 @@ dependencies {
 	// -------------------------------------------
 	compile "org.elasticsearch:elasticsearch:${elasticsearchVersion}"
 	compile "org.elasticsearch.client:elasticsearch-rest-high-level-client:${elasticsearchVersion}"
+
+	// -------------------------------------------
+	// Swagger(APIドキュメント生成）
+	// -------------------------------------------
+	compile "io.springfox:springfox-swagger2:${springfoxSwaggerVersion}"
+	compile "io.springfox:springfox-swagger-ui:${springfoxSwaggerVersion}"
+	compile "io.swagger:swagger-core:${swaggerCoreVersion}"
+
 
 	// -------------------------------------------
 	// Doma2 gen
