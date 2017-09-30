@@ -7,8 +7,6 @@ import javax.validation.constraints.Min
 import javax.validation.constraints.Size
 
 data class FilmRestParam(
-    var id: Int? = null,
-
     @get:NotBlank
     @get:Size(min = 1, max = 50)
     val title: String,

@@ -17,7 +17,6 @@ data class FilmCommand(
     val categoryIds: List<Int> = emptyList()
 ) {
     constructor(restParam: FilmRestParam) : this(
-        id = restParam.id,
         title = restParam.title,
         description = restParam.description,
         releaseYear = restParam.releaseYear,
