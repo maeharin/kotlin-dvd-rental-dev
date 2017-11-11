@@ -27,6 +27,12 @@ $ ./boot-web.sh
 
 http://localhost:8080/swagger-ui.html
 
+さらに別のターミナルを開いて以下を実行（continuous build。build後にswagger-codegenでapi clientを自動生成）
+
+```
+$ ./gradlew build -x test -continuous
+```
+
 ## TIPS
 
 ### 各Dockerコンテナへの接続

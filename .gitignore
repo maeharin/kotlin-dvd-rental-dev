@@ -23,3 +23,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+### swagger-codegenで自動生成されるクライアントライブラリ ###
+/swagger-codegen/generated/*
+!/swagger-codegen/generated/.gitkeep

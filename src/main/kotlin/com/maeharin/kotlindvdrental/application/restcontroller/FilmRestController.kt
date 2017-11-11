@@ -6,11 +6,14 @@ import com.maeharin.kotlindvdrental.application.restcontroller.resource.FilmReso
 import com.maeharin.kotlindvdrental.domain.command.FilmCommand
 import com.maeharin.kotlindvdrental.domain.repository.doma.FilmDomaRepository
 import com.maeharin.kotlindvdrental.domain.repository.elasticsearch.FilmElasticSearchRepository
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiOperation
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/films")
+@Api(tags = arrayOf("film"), description = "映画API")
 class FilmRestController(
     private val filmApplicationService: FilmApplicationService,
     private val filmRepository: FilmDomaRepository,
@@ -20,6 +23,7 @@ class FilmRestController(
      * 一覧
      */
     @GetMapping
+    @ApiOperation("映画一覧取得", nickname = "get_films")
     fun index(): List<FilmResource>
         = filmRepository.findAll().map(::FilmResource)
 

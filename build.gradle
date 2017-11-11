@@ -143,7 +143,9 @@ task domagen {
 	}
 }
 
-task generateClient(type: Exec) {
+task swaggerCodeGen(type: Exec) {
 	workingDir './swagger-codegen'
 	commandLine './generate_client.sh'
 }
+
+build.finalizedBy(swaggerCodeGen)
