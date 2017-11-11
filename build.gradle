@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1.4-3'
+		kotlinVersion = '1.1.51'
 		springBootVersion = '1.5.7.RELEASE'
 		springBootDomaVersion = '1.1.1'
 		domaVersion = '2.17.0'
@@ -143,3 +143,7 @@ task domagen {
 	}
 }
 
+task generateClient(type: Exec) {
+	workingDir './swagger-codegen'
+	commandLine './generate_client.sh'
+}
