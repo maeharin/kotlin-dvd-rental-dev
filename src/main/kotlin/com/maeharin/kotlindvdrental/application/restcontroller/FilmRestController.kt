@@ -31,6 +31,7 @@ class FilmRestController(
      * 詳細
      */
     @GetMapping("{id}")
+    @ApiOperation("映画詳細取得", nickname = "get_film")
     fun show(@PathVariable id: Int): FilmResource
         = filmRepository.findById(id)?.let { FilmResource(it) } ?: throw RuntimeException("not found")
 
@@ -38,6 +39,7 @@ class FilmRestController(
      * 検索
      */
     @GetMapping("search")
+    @ApiOperation("映画検索", nickname = "search_films")
     fun search(): List<FilmResource>
         = filmElasticSearchRepository.search().map(::FilmResource)
 
@@ -45,15 +47,17 @@ class FilmRestController(
      * 作成
      */
     @PostMapping
+    @ApiOperation("映画作成", nickname = "create_film")
     fun create(@RequestBody @Validated filmRestParam: FilmRestParam): Int {
         val createCommand = FilmCommand(filmRestParam)
         return filmApplicationService.create(createCommand)
     }
 
     /**
-     * 変更
+     * 編集
      */
     @PutMapping("{id}")
+    @ApiOperation("映画編集", nickname = "update_film")
     fun update(
         @PathVariable id: Int,
         @RequestBody @Validated filmRestParam: FilmRestParam
@@ -66,6 +70,7 @@ class FilmRestController(
      * 削除
      */
     @DeleteMapping("{id}")
+    @ApiOperation("映画削除", nickname = "delete_film")
     fun delete(@PathVariable id: Int) {
         return filmApplicationService.delete(id)
     }
@@ -75,6 +80,7 @@ class FilmRestController(
      * TODO: batch化
      */
     @GetMapping("index-to-elasticsearch")
+    @ApiOperation("映画ElasticSearchにインデックス", nickname = "index_films_to_elasticsearch")
     fun indexToElasticSearch() {
         filmApplicationService.indexToElasticSearch()
     }
