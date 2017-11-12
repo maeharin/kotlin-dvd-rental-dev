@@ -36,6 +36,7 @@ $ ./gradlew build -x test -continuous
 テスト実行
 
 ```
+$ source .env.dev
 $ ./gradlew test
 ```
 
