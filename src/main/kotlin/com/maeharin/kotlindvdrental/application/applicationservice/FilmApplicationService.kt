@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class FilmApplicationService(
     private val filmRepository: FilmDomaRepository,
     private val languageRepository: LanguageRepository,
@@ -18,7 +19,6 @@ class FilmApplicationService(
     private val categoryRepository: CategoryDomaRepository,
     private val filmElasticSearchRepository: FilmElasticSearchRepository
 ) {
-    @Transactional
     fun create(command: FilmCommand): Int {
         // TODO: 作成者を取得してセット
 
@@ -34,7 +34,6 @@ class FilmApplicationService(
         return filmId
     }
 
-    @Transactional
     fun update(command: FilmCommand) {
         // TODO: 権限チェック
         // TODO: レコード存在チェック
@@ -49,7 +48,6 @@ class FilmApplicationService(
         // TODO: mail送信
     }
 
-    @Transactional
     fun delete(id: Int) {
         // TODO: 権限チェック
         // TODO: レコード存在チェック
