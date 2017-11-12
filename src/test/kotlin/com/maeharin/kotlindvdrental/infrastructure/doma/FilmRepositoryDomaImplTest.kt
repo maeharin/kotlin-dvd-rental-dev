@@ -1,10 +1,6 @@
-package com.maeharin.kotlindvdrental.application.infrastructure.doma
+package com.maeharin.kotlindvdrental.infrastructure.doma
 
 import com.maeharin.kotlindvdrental.domain.model.Film
-import com.maeharin.kotlindvdrental.infrastructure.doma.ActorRepositoryDomaImpl
-import com.maeharin.kotlindvdrental.infrastructure.doma.CategoryRepositoryDomaImpl
-import com.maeharin.kotlindvdrental.infrastructure.doma.FilmRepositoryDomaImpl
-import com.maeharin.kotlindvdrental.infrastructure.doma.LanguageRepositoryDomaImpl
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
