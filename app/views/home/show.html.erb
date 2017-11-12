@@ -1,3 +1,7 @@
-home#show
+<h1>Kotlin dvd rental customer front</h1>
+
+<% @films.each do |film| %>
+  <%= film.title %><br>
+<% end %>
 
 <%= javascript_pack_tag 'hello_vue' %>
