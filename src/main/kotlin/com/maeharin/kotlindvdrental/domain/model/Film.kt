@@ -1,7 +1,7 @@
 package com.maeharin.kotlindvdrental.domain.model
 
 import com.maeharin.kotlindvdrental.domain.command.FilmCommand
-import com.maeharin.kotlindvdrental.domain.repository.elasticsearch.FilmElasticSearchSource
+import com.maeharin.kotlindvdrental.infrastructure.elasticsearch.FilmElasticSearchSource
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmEntity
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmWithRelationEntity
 import java.math.BigDecimal

@@ -3,29 +3,29 @@ package com.maeharin.kotlindvdrental.application.applicationservice
 import com.maeharin.kotlindvdrental.application.exception.RecordNotFoundException
 import com.maeharin.kotlindvdrental.domain.command.FilmCommand
 import com.maeharin.kotlindvdrental.domain.model.Film
-import com.maeharin.kotlindvdrental.domain.repository.doma.ActorDomaRepository
-import com.maeharin.kotlindvdrental.domain.repository.doma.CategoryDomaRepository
-import com.maeharin.kotlindvdrental.domain.repository.doma.FilmDomaRepository
-import com.maeharin.kotlindvdrental.domain.repository.doma.LanguageRepository
-import com.maeharin.kotlindvdrental.domain.repository.elasticsearch.FilmElasticSearchRepository
+import com.maeharin.kotlindvdrental.domain.repository.ActorRepository
+import com.maeharin.kotlindvdrental.domain.repository.FilmRepository
+import com.maeharin.kotlindvdrental.domain.repository.LanguageRepository
+import com.maeharin.kotlindvdrental.domain.repository.CategoryRepository
+import com.maeharin.kotlindvdrental.infrastructure.elasticsearch.FilmRepositoryElasticSearchImpl
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional
 class FilmApplicationService(
-    private val filmRepository: FilmDomaRepository,
-    private val languageRepository: LanguageRepository,
-    private val actorRepository: ActorDomaRepository,
-    private val categoryRepository: CategoryDomaRepository,
-    private val filmElasticSearchRepository: FilmElasticSearchRepository
+        private val filmRepository: FilmRepository,
+        private val languageRepository: LanguageRepository,
+        private val actorRepository: ActorRepository,
+        private val categoryRepository: CategoryRepository,
+        private val filmRepositoryElasticSearchImpl: FilmRepositoryElasticSearchImpl
 ) {
     fun findAll(): List<Film> {
         return filmRepository.findAll()
     }
 
     fun search(): List<Film> {
-        return filmElasticSearchRepository.search()
+        return filmRepositoryElasticSearchImpl.search()
     }
 
     fun findById(id: Int): Film {
@@ -69,6 +69,6 @@ class FilmApplicationService(
 
     fun indexToElasticSearch() {
         val films = filmRepository.findAll()
-        filmElasticSearchRepository.bulkIndex(films)
+        filmRepositoryElasticSearchImpl.bulkIndex(films)
     }
 }

@@ -1,11 +1,9 @@
-package com.maeharin.kotlindvdrental.domain.repository.elasticsearch
+package com.maeharin.kotlindvdrental.infrastructure.elasticsearch
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.maeharin.kotlindvdrental.domain.model.Actor
 import com.maeharin.kotlindvdrental.domain.model.Category
 import com.maeharin.kotlindvdrental.domain.model.Film
 import com.maeharin.kotlindvdrental.domain.model.Language
-import org.springframework.beans.factory.annotation.Autowired
 import java.math.BigDecimal
 import java.time.LocalDateTime
 
@@ -15,17 +13,17 @@ import java.time.LocalDateTime
  */
 
 data class FilmElasticSearchSource(
-    val id: Int,
-    val title: String,
-    val description: String?,
-    val releaseYear: Int?,
-    val rentalDuration: Short,
-    val rentalRate: BigDecimal,
-    val length: Short?,
-    val replacementCost: BigDecimal,
-    val language: LanguageElasticSearchSource,
-    val actors: List<ActorElasticSearchSource>,
-    val categories: List<CategoryElasticSearchSource>
+        val id: Int,
+        val title: String,
+        val description: String?,
+        val releaseYear: Int?,
+        val rentalDuration: Short,
+        val rentalRate: BigDecimal,
+        val length: Short?,
+        val replacementCost: BigDecimal,
+        val language: LanguageElasticSearchSource,
+        val actors: List<ActorElasticSearchSource>,
+        val categories: List<CategoryElasticSearchSource>
 ) {
     constructor(film: Film) : this(
         id = film.id!!,

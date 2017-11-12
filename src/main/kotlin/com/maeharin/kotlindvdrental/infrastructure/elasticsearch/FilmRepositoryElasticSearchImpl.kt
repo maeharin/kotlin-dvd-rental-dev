@@ -1,4 +1,4 @@
-package com.maeharin.kotlindvdrental.domain.repository.elasticsearch
+package com.maeharin.kotlindvdrental.infrastructure.elasticsearch
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
@@ -15,7 +15,7 @@ import org.elasticsearch.search.builder.SearchSourceBuilder
 import org.springframework.stereotype.Repository
 
 @Repository
-class FilmElasticSearchRepository(
+class FilmRepositoryElasticSearchImpl(
     val objectMapper: ObjectMapper,
     val elasticSearchConfig: ElasticSearchConfig
 ){

@@ -1,6 +1,7 @@
-package com.maeharin.kotlindvdrental.domain.repository.doma
+package com.maeharin.kotlindvdrental.infrastructure.doma
 
 import com.maeharin.kotlindvdrental.domain.model.Film
+import com.maeharin.kotlindvdrental.domain.repository.FilmRepository
 import com.maeharin.kotlindvdrental.infrastructure.doma.dao.*
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmActorEntity
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.FilmCategoryEntity
@@ -8,14 +9,14 @@ import org.springframework.stereotype.Repository
 import java.time.LocalDateTime
 
 @Repository
-class FilmDomaRepository(
+class FilmRepositoryDomaImpl(
     private val filmWithRelationDao: FilmWithRelationEntityDao,
     private val filmEntityDao: FilmEntityDao,
     private val languageEntityDao: LanguageEntityDao,
     private val filmActorEntityDao: FilmActorEntityDao,
     private val filmCategoryEntityDao: FilmCategoryEntityDao
-) {
-    fun findById(id: Int): Film? {
+): FilmRepository {
+    override fun findById(id: Int): Film? {
         val entities = filmWithRelationDao.selectById(id)
 
         return if (entities.isEmpty()) {
@@ -25,12 +26,12 @@ class FilmDomaRepository(
         }
     }
 
-    fun findAll(): List<Film> {
+    override fun findAll(): List<Film> {
         val entities = filmWithRelationDao.selectAll()
         return Film.createByFilmWithRelationEntities(entities)
     }
 
-    fun store(film: Film): Int {
+    override fun store(film: Film): Int {
         // TODO: ビジネスロジックバリデーション
 
         // save film
@@ -61,7 +62,7 @@ class FilmDomaRepository(
         return filmId
     }
 
-    fun update(film: Film) {
+    override fun update(film: Film) {
         // save film
         filmEntityDao.update(film.toEntity())
 
@@ -87,7 +88,7 @@ class FilmDomaRepository(
         }
     }
 
-    fun delete(id: Int) {
+    override fun delete(id: Int) {
         // 子テーブルから削除
         filmActorEntityDao.deleteByFilmId(id)
         filmCategoryEntityDao.deleteByFilmId(id)
