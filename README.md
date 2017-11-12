@@ -8,7 +8,6 @@
   - doma2
   - postgres
   - elasticsearch
-  - redis（作成中）
 
 ## 起動
 
@@ -41,9 +40,6 @@ $ ./gradlew build -x test -continuous
 ```bash
 # postgres
 $ docker exec -it dvd-rental-postgres-container psql -U postgres dvdrental
-
-# redis
-# $ docker exec -it dvd-rental-redis-container redis-cli
 ```
 
 ### kibana
