@@ -3,7 +3,7 @@ package com.maeharin.kotlindvdrental.application.restcontroller
 import com.maeharin.kotlindvdrental.application.applicationservice.FilmApplicationService
 import com.maeharin.kotlindvdrental.application.restcontroller.param.FilmRestParam
 import com.maeharin.kotlindvdrental.application.restcontroller.resource.FilmResource
-import com.maeharin.kotlindvdrental.domain.command.FilmCommand
+import com.maeharin.kotlindvdrental.application.applicationservice.command.FilmCommand
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
@@ -47,8 +47,20 @@ class FilmRestController(
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("映画作成", nickname = "create_film")
     fun create(@RequestBody @Validated filmRestParam: FilmRestParam): Int {
-        val createCommand = FilmCommand(filmRestParam)
-        return filmApplicationService.create(createCommand)
+        val command = FilmCommand(
+                title = filmRestParam.title,
+                description = filmRestParam.description,
+                releaseYear = filmRestParam.releaseYear,
+                rentalDuration = filmRestParam.rentalDuration,
+                rentalRate = filmRestParam.rentalRate,
+                length = filmRestParam.length,
+                replacementCost = filmRestParam.replacementCost,
+                languageId = filmRestParam.languageId,
+                actorIds = filmRestParam.actorIds,
+                categoryIds = filmRestParam.categoryIds
+        )
+
+        return filmApplicationService.create(command)
     }
 
     /**
@@ -60,7 +72,20 @@ class FilmRestController(
         @PathVariable id: Int,
         @RequestBody @Validated filmRestParam: FilmRestParam
     ) {
-        val command = FilmCommand(filmRestParam).also { it.id = id }
+        val command = FilmCommand(
+                id = id,
+                title = filmRestParam.title,
+                description = filmRestParam.description,
+                releaseYear = filmRestParam.releaseYear,
+                rentalDuration = filmRestParam.rentalDuration,
+                rentalRate = filmRestParam.rentalRate,
+                length = filmRestParam.length,
+                replacementCost = filmRestParam.replacementCost,
+                languageId = filmRestParam.languageId,
+                actorIds = filmRestParam.actorIds,
+                categoryIds = filmRestParam.categoryIds
+        )
+
         return filmApplicationService.update(command)
     }
 

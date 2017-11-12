@@ -7,10 +7,4 @@ class Category(
     val id: Int,
     val name: String,
     val updatedAt: LocalDateTime
-) {
-    constructor(entity: CategoryEntity): this(
-        id = entity.categoryId,
-        name = entity.name,
-        updatedAt = entity.lastUpdate
-    )
-}
+)

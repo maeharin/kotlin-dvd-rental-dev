@@ -1,7 +1,7 @@
 package com.maeharin.kotlindvdrental.application.applicationservice
 
 import com.maeharin.kotlindvdrental.application.exception.RecordNotFoundException
-import com.maeharin.kotlindvdrental.domain.command.FilmCommand
+import com.maeharin.kotlindvdrental.application.applicationservice.command.FilmCommand
 import com.maeharin.kotlindvdrental.domain.model.Film
 import com.maeharin.kotlindvdrental.domain.repository.ActorRepository
 import com.maeharin.kotlindvdrental.domain.repository.FilmRepository
@@ -39,7 +39,19 @@ class FilmApplicationService(
         val actors     = actorRepository.findByIds(command.actorIds)
         val categories = categoryRepository.findByIds(command.categoryIds)
 
-        val film = Film(command = command, language = language, actors = actors, categories = categories)
+        val film = Film(
+                title = command.title,
+                description = command.description,
+                releaseYear = command.releaseYear,
+                rentalDuration = command.rentalDuration,
+                rentalRate = command.rentalRate,
+                length = command.length,
+                replacementCost = command.replacementCost,
+                language = language,
+                actors = actors,
+                categories = categories
+        )
+
         val filmId = filmRepository.store(film)
 
         // TODO: mail送信
@@ -55,7 +67,20 @@ class FilmApplicationService(
         val actors     = actorRepository.findByIds(command.actorIds)
         val categories = categoryRepository.findByIds(command.categoryIds)
 
-        val film = Film(command = command, language = language, actors = actors, categories = categories)
+        val film = Film(
+                id = command.id,
+                title = command.title,
+                description = command.description,
+                releaseYear = command.releaseYear,
+                rentalDuration = command.rentalDuration,
+                rentalRate = command.rentalRate,
+                length = command.length,
+                replacementCost = command.replacementCost,
+                language = language,
+                actors = actors,
+                categories = categories
+        )
+
         filmRepository.update(film)
 
         // TODO: mail送信
@@ -71,4 +96,5 @@ class FilmApplicationService(
         val films = filmRepository.findAll()
         filmRepositoryElasticSearchImpl.bulkIndex(films)
     }
+
 }

@@ -8,11 +8,4 @@ class Actor(
     val firstName: String,
     val lastName: String,
     val updatedAt: LocalDateTime
-) {
-    constructor(entity: ActorEntity): this(
-        id = entity.actorId,
-        firstName = entity.firstName,
-        lastName = entity.lastName,
-        updatedAt = entity.lastUpdate
-    )
-}
+)

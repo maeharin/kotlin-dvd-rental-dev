@@ -3,7 +3,10 @@ package com.maeharin.kotlindvdrental.infrastructure.elasticsearch
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.maeharin.kotlindvdrental.ElasticSearchConfig
+import com.maeharin.kotlindvdrental.domain.model.Actor
+import com.maeharin.kotlindvdrental.domain.model.Category
 import com.maeharin.kotlindvdrental.domain.model.Film
+import com.maeharin.kotlindvdrental.domain.model.Language
 import org.elasticsearch.action.bulk.BulkRequest
 import org.elasticsearch.action.index.IndexRequest
 import org.elasticsearch.action.search.SearchRequest
@@ -26,7 +29,7 @@ class FilmRepositoryElasticSearchImpl(
         val bulkRequest = BulkRequest().also { bulkRequest ->
             films.forEach { film ->
                 // see: https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-docs-index.html#java-docs-index-generate-beans
-                val source = FilmElasticSearchSource(film)
+                val source = _toElasticSearchSrouce(film)
 
                 val json = objectMapper.writeValueAsString(source)
 
@@ -55,7 +58,7 @@ class FilmRepositoryElasticSearchImpl(
         return searchResponse.hits.map { hit ->
             val json: String = hit.sourceAsString
             val filmSource: FilmElasticSearchSource = objectMapper.readValue(json)
-            Film(filmSource)
+            _toDomainModel(filmSource)
         }
     }
 
@@ -70,5 +73,71 @@ class FilmRepositoryElasticSearchImpl(
         }
 
         return RestHighLevelClient(lowLevelClient)
+    }
+
+    private fun _toElasticSearchSrouce(film: Film): FilmElasticSearchSource {
+        return FilmElasticSearchSource(
+                id = film.id!!,
+                title = film.title,
+                description = film.description,
+                releaseYear = film.releaseYear,
+                rentalDuration = film.rentalDuration,
+                rentalRate = film.rentalRate,
+                length = film.length,
+                replacementCost = film.replacementCost,
+                language = LanguageElasticSearchSource(
+                        id = film.language.id,
+                        name = film.language.name,
+                        updatedAt = film.language.updatedAt
+                ),
+                actors = film.actors.map { actor ->
+                    ActorElasticSearchSource(
+                            id = actor.id,
+                            firstName = actor.firstName,
+                            lastName = actor.lastName,
+                            updatedAt = actor.updatedAt
+                    )
+                },
+                categories = film.categories.map { category ->
+                    CategoryElasticSearchSource(
+                            id = category.id,
+                            name = category.name,
+                            updatedAt = category.updatedAt
+                    )
+                }
+        )
+    }
+
+    private fun _toDomainModel(esSource: FilmElasticSearchSource): Film {
+        return Film(
+                id = esSource.id,
+                title = esSource.title,
+                description = esSource.description,
+                releaseYear = esSource.releaseYear,
+                rentalDuration = esSource.rentalDuration,
+                rentalRate = esSource.rentalRate,
+                length = esSource.length,
+                replacementCost = esSource.replacementCost,
+                language = Language(
+                        id = esSource.language.id,
+                        name = esSource.language.name,
+                        updatedAt = esSource.language.updatedAt
+                ),
+                actors = esSource.actors.map { a ->
+                    Actor(
+                            id = a.id,
+                            firstName = a.firstName,
+                            lastName = a.lastName,
+                            updatedAt = a.updatedAt
+                    )
+                },
+                categories = esSource.categories.map { c ->
+                    Category(
+                            id = c.id,
+                            name = c.name,
+                            updatedAt = c.updatedAt
+                    )
+                }
+        )
     }
 }
