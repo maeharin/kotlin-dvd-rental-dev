@@ -2,7 +2,7 @@ package com.maeharin.kotlindvdrental.domain.model
 
 import java.math.BigDecimal
 
-class Film(
+data class Film(
     val id: Int? = null,
     val title: String,
     val description: String?,
