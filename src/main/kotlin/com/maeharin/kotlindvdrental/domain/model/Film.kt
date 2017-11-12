@@ -20,6 +20,7 @@ class Film(
     val actors: List<Actor>,
     val categories: List<Category>
 ) {
+    // TODO: インフラ層の関心事なので、インフラ層に移動
     /**
      * DomaのEntityからインスタンス生成
      */
@@ -54,6 +55,7 @@ class Film(
         categories = categories
     )
 
+    // TODO: インフラ層の関心事なので、インフラ層に移動
     /**
      * ElasticSearchのSrouceを表すDTOからインスタンス生成
      */
@@ -88,6 +90,7 @@ class Film(
         }
     )
 
+    // TODO: インフラ層の関心事なので、インフラ層に移動
     fun toEntity(): FilmEntity {
         return FilmEntity().also { entity ->
             entity.filmId = id
@@ -104,6 +107,7 @@ class Film(
     }
 
 
+    // TODO: インフラ層の関心事なので、インフラ層に移動
     companion object {
         fun createByFilmWithRelationEntities(entities: List<FilmWithRelationEntity>): List<Film> {
             return entities

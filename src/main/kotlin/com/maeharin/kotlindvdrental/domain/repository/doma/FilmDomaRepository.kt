@@ -16,9 +16,13 @@ class FilmDomaRepository(
     private val filmCategoryEntityDao: FilmCategoryEntityDao
 ) {
     fun findById(id: Int): Film? {
-        // TODO: 存在しない場合
         val entities = filmWithRelationDao.selectById(id)
-        return Film.createByFilmWithRelationEntities(entities).first()
+
+        return if (entities.isEmpty()) {
+            null
+        } else {
+            Film.createByFilmWithRelationEntities(entities).first()
+        }
     }
 
     fun findAll(): List<Film> {
