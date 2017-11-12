@@ -1,7 +1,8 @@
 # Kotlin dvd rental
 
-- Kotlin x Spring Boot x Doma2のサンプルプロジェクトです
+- Kotlin x Spring Boot x Doma2を使ったREST APIのサンプルプロジェクトです
 - http://www.postgresqltutorial.com/postgresql-sample-database/ のサンプルデータベースを使います
+- swagger-codegenでapiクライアント（ruby gem）を自動生成します
 - DBにpostgres、検索にelasticsearchを使っています
   - spring boot
   - doma2
