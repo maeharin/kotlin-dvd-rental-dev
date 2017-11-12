@@ -6,6 +6,7 @@ import com.maeharin.kotlindvdrental.application.restcontroller.resource.FilmReso
 import com.maeharin.kotlindvdrental.domain.command.FilmCommand
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
+import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -43,6 +44,7 @@ class FilmRestController(
      * 作成
      */
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("映画作成", nickname = "create_film")
     fun create(@RequestBody @Validated filmRestParam: FilmRestParam): Int {
         val createCommand = FilmCommand(filmRestParam)
