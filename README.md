@@ -33,6 +33,12 @@ http://localhost:8080/swagger-ui.html
 $ ./gradlew build -x test -continuous
 ```
 
+テスト実行
+
+```
+$ ./gradlew test
+```
+
 ## TIPS
 
 ### 各Dockerコンテナへの接続
