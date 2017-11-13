@@ -4,21 +4,30 @@ import com.maeharin.kotlindvdrental.domain.model.Actor
 import com.maeharin.kotlindvdrental.domain.model.Category
 import com.maeharin.kotlindvdrental.domain.model.Film
 import com.maeharin.kotlindvdrental.domain.model.Language
+import java.math.BigDecimal
 import java.time.LocalDateTime
 
 data class FilmResource(
     val id: Int,
     val title: String,
+    val description: String?,
+    val releaseYear: Int?,
+    val rentalRate: BigDecimal,
+    val length: Short?,
     val language: LanguageResource,
     val actors: List<ActorResource>,
     val categories: List<CategoryResource>
 ) {
     constructor(film: Film) : this(
-        id = film.id!!,
-        title = film.title,
-        language = LanguageResource(film.language),
-        actors = film.actors.map(::ActorResource),
-        categories = film.categories.map(::CategoryResource)
+            id = film.id!!,
+            title = film.title,
+            description = film.description,
+            releaseYear = film.releaseYear,
+            rentalRate = film.rentalRate,
+            length = film.length,
+            language = LanguageResource(film.language),
+            actors = film.actors.map(::ActorResource),
+            categories = film.categories.map(::CategoryResource)
     )
 }
 
