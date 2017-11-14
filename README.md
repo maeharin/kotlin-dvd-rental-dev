@@ -40,6 +40,20 @@ $ source .env.dev
 $ ./gradlew test
 ```
 
+## 認証APIへのアクセス
+
+```
+$ curl -sS -XPOST \
+    -u customer-api-client:hoge \
+    http://localhost:8080/oauth/token \
+    -H "Accept: application/json" \
+    -d "username=<TODO>&password=<TODO>&grant_type=password" \
+    | jq -r '"bearer " + .access_token'
+```
+
+swagger uiの右上にあるauthorizeボタンを押し、
+上記の標準出力に表示された文字列（例：bearer TODO）をセット
+
 ## TIPS
 
 ### 各Dockerコンテナへの接続

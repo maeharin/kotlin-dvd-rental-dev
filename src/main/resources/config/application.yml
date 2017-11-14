@@ -13,3 +13,7 @@ elasticsearch:
   host2: ${ES_HOST2}
   port: ${ES_PORT}
   protocol: ${ES_PROTOCOL}
+
+security:
+  basic:
+    enabled: false
