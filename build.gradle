@@ -3,6 +3,7 @@ buildscript {
 		kotlinVersion = '1.1.51'
 		springBootVersion = '1.5.7.RELEASE'
 		springBootDomaVersion = '1.1.1'
+		springSecurityOauth2Version = '2.1.1.RELEASE'
 		domaVersion = '2.17.0'
 		postgresqlVersion = '42.1.4'
 		domaGenVersion = '2.17.0'
@@ -51,13 +52,18 @@ processResources.destinationDir = compileJava.destinationDir
 compileJava.dependsOn processResources
 
 dependencies {
-	//compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
 	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	//testCompile('org.springframework.security:spring-security-test')
+
+	// -------------------------------------------
+	// spring security
+	// -------------------------------------------
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile "org.springframework.security.oauth:spring-security-oauth2:${springSecurityOauth2Version}"
+	testCompile('org.springframework.security:spring-security-test')
 
 	// -------------------------------------------
 	// jackson

@@ -17,6 +17,16 @@ public class StaffEntity {
     @SequenceGenerator(sequence = "staff_staff_id_seq")
     public Integer staffId;
 
+    /**
+     * ログインID
+     */
+    public String loginId;
+
+    /**
+     * ハッシュ化されたパスワード
+     */
+    public String passwordDigest;
+
     /** */
     public String firstName;
 
@@ -34,12 +44,6 @@ public class StaffEntity {
 
     /** */
     public Boolean active;
-
-    /** */
-    public String username;
-
-    /** */
-    public String password;
 
     /** */
     public LocalDateTime lastUpdate;

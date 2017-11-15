@@ -1,4 +1,4 @@
-package com.maeharin.kotlindvdrental.application.restcontroller.resource
+package com.maeharin.kotlindvdrental.application.restcontroller.staff.resource
 
 import com.maeharin.kotlindvdrental.domain.model.Actor
 import com.maeharin.kotlindvdrental.domain.model.Category
@@ -8,15 +8,15 @@ import java.math.BigDecimal
 import java.time.LocalDateTime
 
 data class FilmResource(
-    val id: Int,
-    val title: String,
-    val description: String?,
-    val releaseYear: Int?,
-    val rentalRate: BigDecimal,
-    val length: Short?,
-    val language: LanguageResource,
-    val actors: List<ActorResource>,
-    val categories: List<CategoryResource>
+        val id: Int,
+        val title: String,
+        val description: String?,
+        val releaseYear: Int?,
+        val rentalRate: BigDecimal,
+        val length: Short?,
+        val language: LanguageResource,
+        val actors: List<ActorResource>,
+        val categories: List<CategoryResource>
 ) {
     constructor(film: Film) : this(
             id = film.id!!,

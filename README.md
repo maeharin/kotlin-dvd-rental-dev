@@ -4,10 +4,6 @@
 - http://www.postgresqltutorial.com/postgresql-sample-database/ のサンプルデータベースを使います
 - swagger-codegenでapiクライアント（ruby gem）を自動生成します
 - DBにpostgres、検索にelasticsearchを使っています
-  - spring boot
-  - doma2
-  - postgres
-  - elasticsearch
 
 ## 起動
 
@@ -38,6 +34,41 @@ $ ./gradlew build -x test -continuous
 ```
 $ source .env.dev
 $ ./gradlew test
+```
+
+## APIへのアクセス
+
+全てのloginidとpasswordを初期化
+
+```
+// 以下を実行すると全てのuserとstaffのloginidとpasswordが初期化されます
+// passwordは全てtestになります
+$ curl -sS -XPOST http://localhost:8080/api/v1/sysadmin/init-all-loginid-and-password
+```
+
+customer_1のaccess tokenを取得
+
+```
+$ curl -sS -XPOST \
+    -u customer-api-client:hoge \
+    http://localhost:8080/oauth/token \
+    -H "Accept: application/json" \
+    -d "user_type=customer&username=customer_1&password=test&grant_type=password" \
+    | jq -r '"bearer " + .access_token'
+
+// swagger uiの右上にあるauthorizeボタンを押し、上記の標準出力に表示された文字列（例：bearer xxx）をセットすると
+// staff apiにアクセスできるようになります
+```
+
+staff_1のaccess tokenを取得
+
+```
+$ curl -sS -XPOST \
+    -u staff-api-client:fuge \
+    http://localhost:8080/oauth/token \
+    -H "Accept: application/json" \
+    -d "user_type=staff&username=staff_1&password=test&grant_type=password" \
+    | jq -r '"bearer " + .access_token'
 ```
 
 ## TIPS
