@@ -1,0 +1,24 @@
+<h1>Kotlin dvd rental customer front</h1>
+
+<div class="mdc-layout-grid">
+<div class="mdc-layout-grid__inner">
+  <div class="mdc-layout-grid__cell">
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell"><span>Second level</span></div>
+      <div class="mdc-layout-grid__cell"><span>Second level</span></div>
+    </div>
+  </div>
+  <div class="mdc-layout-grid__cell">First level</div>
+  <div class="mdc-layout-grid__cell">First level</div>
+</div>
+</div>
+
+<ul>
+<% @films.each do |film| %>
+  <li>
+    <%= film.title %>
+  </li>
+<% end %>
+</ul>
+
+<%= javascript_pack_tag 'hello_vue' %>

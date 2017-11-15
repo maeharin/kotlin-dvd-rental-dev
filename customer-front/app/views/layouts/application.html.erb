@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>KotlinDvdRentalCustomerFront</title>
+    <%= csrf_meta_tags %>
+
+    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <header class="mdc-toolbar">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="mdc-toolbar__title">Title</span>
+          <a href="#" class="material-icons mdc-toolbar__menu-icon">films</a>
+        </section>
+      </div>
+    </header>
+    <%= yield %>
+  </body>
+</html>

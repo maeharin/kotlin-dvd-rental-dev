@@ -1,0 +1,15 @@
+{
+  "name": "kotlin-dvd-rental-customer-front",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^3.0.2",
+    "coffeescript": "1.12.7",
+    "material-components-web": "^0.24.0",
+    "vue": "^2.5.3",
+    "vue-loader": "^13.5.0",
+    "vue-template-compiler": "^2.5.3"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.9.4"
+  }
+}
