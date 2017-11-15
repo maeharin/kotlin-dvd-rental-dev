@@ -1,0 +1,32 @@
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### swagger-codegenのjarはgit管理に置かない ###
+swagger-codegen/swagger-codegen-cli-*.jar
+
+### swagger-codegenで自動生成されるクライアントライブラリ ###
+/swagger-codegen/generated/*
+!/swagger-codegen/generated/.gitkeep

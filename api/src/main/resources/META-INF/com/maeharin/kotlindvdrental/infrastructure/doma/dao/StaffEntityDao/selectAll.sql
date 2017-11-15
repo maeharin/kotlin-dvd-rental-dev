@@ -1,0 +1,4 @@
+select
+  /*%expand*/*
+from
+  staff

@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url:  jdbc:postgresql://${DB_HOST}/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driverClassName: org.postgresql.Driver
+
+doma:
+  dialect: postgres
+
+elasticsearch:
+  host1: ${ES_HOST1}
+  host2: ${ES_HOST2}
+  port: ${ES_PORT}
+  protocol: ${ES_PROTOCOL}
+
+security:
+  basic:
+    enabled: false

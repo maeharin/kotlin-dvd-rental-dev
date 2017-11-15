@@ -1,0 +1,30 @@
+version: "3"
+services:
+  postgres:
+    build: ./docker/postgres/
+    image: dvd-rental-postgres
+    ports:
+      - 5432:5432
+    container_name: dvd-rental-postgres-container
+    volumes:
+      - ./docker/postgres/dumpfile:/tmp/dumpfile
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.1
+    environment:
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - cluster.name=dvd-rental-cluster
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+      - 9300:9300
+    container_name: dvd-rental-elasticsearch-container
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:5.6.1
+    environment:
+      - xpack.security.enabled=false
+    ports:
+      - 5601:5601
+    container_name: dvd-rental-kibana-container
