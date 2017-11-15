@@ -24,6 +24,9 @@ dist/
 nbdist/
 .nb-gradle/
 
+### swagger-codegenのjarはgit管理に置かない ###
+swagger-codegen/swagger-codegen-cli-*.jar
+
 ### swagger-codegenで自動生成されるクライアントライブラリ ###
 /swagger-codegen/generated/*
 !/swagger-codegen/generated/.gitkeep

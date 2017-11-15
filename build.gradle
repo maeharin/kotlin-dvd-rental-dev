@@ -100,7 +100,6 @@ dependencies {
 	compile "io.springfox:springfox-swagger-ui:${springfoxSwaggerVersion}"
 	compile "io.swagger:swagger-core:${swaggerCoreVersion}"
 
-
 	// -------------------------------------------
 	// Doma2 gen
 	// -------------------------------------------
@@ -149,7 +148,24 @@ task domagen {
 	}
 }
 
-task swaggerCodeGen(type: Exec) {
+//
+// swagger codegenのjarを取得しswagger-codegenディレクトリにコピーする
+//
+task copySwaggerCodegen(type: Copy) {
+    configurations {
+        swaggerCodegen
+    }
+
+    dependencies {
+        swaggerCodegen "io.swagger:swagger-codegen-cli:2.2.3"
+    }
+
+    from configurations.swaggerCodegen
+
+    into 'swagger-codegen'
+}
+
+task swaggerCodeGen(type: Exec, dependsOn: copySwaggerCodegen) {
 	workingDir './swagger-codegen'
 	commandLine './generate_client.sh'
 }
