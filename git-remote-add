@@ -1,0 +1,5 @@
+#!/bin/bash
+
+git remote add sub-origin-api            git@github.com:maeharin/kotlin-dvd-rental-api.git
+git remote add sub-origin-customer-front git@github.com:maeharin/kotlin-dvd-rental-customer-front.git
+git remote add sub-origin-admin-front    git@github.com:maeharin/kotlin-dvd-rental-admin-front.git

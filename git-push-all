@@ -1,0 +1,10 @@
+#!/bin/bash
+
+branch=${1:-master}
+
+echo "push to all repositories...[branch] ${branch}"
+
+git push origin ${branch} && \
+    git subtree push --prefix=api            sub-origin-api            ${branch} && \
+    git subtree push --prefix=customer-front sub-origin-customer-front ${branch} && \
+    git subtree push --prefix=admin-front    sub-origin-admin-front    ${branch}
