@@ -1,7 +1,7 @@
 PATH
-  remote: ../kotlin-dvd-rental/swagger-codegen/generated/ruby
+  remote: ../api/swagger-codegen/generated/ruby/customer-api
   specs:
-    dvd-rental-client (1.0.0)
+    dvd-rental-customer-client (1.0.0)
       json (~> 2.1, >= 2.1.0)
       typhoeus (~> 1.0, >= 1.0.1)
 
@@ -173,7 +173,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
-  dvd-rental-client!
+  dvd-rental-customer-client!
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)
