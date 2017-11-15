@@ -1,4 +1,4 @@
-package com.maeharin.kotlindvdrental.application.restcontroller.customer.resource
+package com.maeharin.kotlindvdrental.application.restcontroller.staff.resource
 
 import com.maeharin.kotlindvdrental.domain.model.Actor
 import com.maeharin.kotlindvdrental.domain.model.Category
@@ -37,34 +37,34 @@ data class LanguageResource(
         val updatedAt: LocalDateTime
 ) {
     constructor(language: Language) : this(
-            id = language.id,
-            name = language.name,
-            updatedAt = language.updatedAt
+        id = language.id,
+        name = language.name,
+        updatedAt = language.updatedAt
     )
 }
 
 data class ActorResource(
-        val id: Int,
-        val firstName: String,
-        val lastName: String,
-        val updatedAt: LocalDateTime
+    val id: Int,
+    val firstName: String,
+    val lastName: String,
+    val updatedAt: LocalDateTime
 ) {
     constructor(actor: Actor) : this(
-            id = actor.id,
-            firstName = actor.firstName,
-            lastName = actor.lastName,
-            updatedAt = actor.updatedAt
+        id = actor.id,
+        firstName = actor.firstName,
+        lastName = actor.lastName,
+        updatedAt = actor.updatedAt
     )
 }
 
 data class CategoryResource(
-        val id: Int,
-        val name: String,
-        val updatedAt: LocalDateTime
+    val id: Int,
+    val name: String,
+    val updatedAt: LocalDateTime
 ) {
     constructor(category: Category): this(
-            id = category.id,
-            name = category.name,
-            updatedAt = category.updatedAt
+        id = category.id,
+        name = category.name,
+        updatedAt = category.updatedAt
     )
 }

@@ -1,4 +1,4 @@
-package com.maeharin.kotlindvdrental.application.restcontroller.customer.param
+package com.maeharin.kotlindvdrental.application.restcontroller.staff.param
 
 import org.hibernate.validator.constraints.NotBlank
 import java.math.BigDecimal

@@ -91,10 +91,4 @@ class FilmApplicationService(
         // TODO: レコード存在チェック
         filmRepository.delete(id)
     }
-
-    fun indexToElasticSearch() {
-        val films = filmRepository.findAll()
-        filmRepositoryElasticSearchImpl.bulkIndex(films)
-    }
-
 }
