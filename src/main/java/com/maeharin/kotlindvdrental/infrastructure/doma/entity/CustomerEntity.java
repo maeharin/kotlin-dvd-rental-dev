@@ -18,6 +18,16 @@ public class CustomerEntity {
     @SequenceGenerator(sequence = "customer_customer_id_seq")
     public Integer customerId;
 
+    /**
+     * ログインID
+     */
+    public String loginId;
+
+    /**
+     * ハッシュ化されたパスワード
+     */
+    public String passwordDigest;
+
     /** */
     public Short storeId;
 

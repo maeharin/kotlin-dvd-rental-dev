@@ -23,6 +23,9 @@ public interface CustomerEntityDao {
     @Select
     CustomerEntity selectById(Integer customerId);
 
+    @Select
+    CustomerEntity selectByLoginId(String loginId);
+
     /**
      * @return the CustomerEntity entity list
      */
@@ -42,6 +45,9 @@ public interface CustomerEntityDao {
      */
     @Update
     int update(CustomerEntity entity);
+
+    @Update(sqlFile = true)
+    int updateAllLoginIdAndPassword(String loginIdPrefix, String passwordDigest);
 
     /**
      * @param entity

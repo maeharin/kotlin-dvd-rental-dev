@@ -22,6 +22,9 @@ class SecurityOauth2ResourceServerConfig : ResourceServerConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
-                .antMatchers("/api/v1/**").hasRole("CAN_ACCESS_CUSTOMER_API")
+                .antMatchers("/api/v1/customer/**").hasRole("CAN_ACCESS_CUSTOMER_API")
+                .antMatchers("/api/v1/staff/**").hasRole("CAN_ACCESS_STAFF_API")
+                // TODO
+                //.antMatchers("/api/v1/sysadmin/**").hasRole("CAN_ACCESS_STAFF_API")
     }
 }

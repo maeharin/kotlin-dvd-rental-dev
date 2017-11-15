@@ -1,8 +1,8 @@
-package com.maeharin.kotlindvdrental.application.restcontroller
+package com.maeharin.kotlindvdrental.application.restcontroller.customer
 
 import com.maeharin.kotlindvdrental.application.applicationservice.FilmApplicationService
-import com.maeharin.kotlindvdrental.application.restcontroller.param.FilmRestParam
-import com.maeharin.kotlindvdrental.application.restcontroller.resource.FilmResource
+import com.maeharin.kotlindvdrental.application.restcontroller.customer.param.FilmRestParam
+import com.maeharin.kotlindvdrental.application.restcontroller.customer.resource.FilmResource
 import com.maeharin.kotlindvdrental.application.applicationservice.command.FilmCommand
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
@@ -11,7 +11,7 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/v1/films")
+@RequestMapping("/api/v1/customer/films")
 @Api(tags = arrayOf("film"), description = "映画API")
 class FilmRestController(
     private val filmApplicationService: FilmApplicationService

@@ -1,6 +1,7 @@
 package com.maeharin.kotlindvdrental.infrastructure.doma.dao;
 
 import com.maeharin.kotlindvdrental.infrastructure.doma.entity.StaffEntity;
+import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Delete;
 import org.seasar.doma.Insert;
@@ -23,6 +24,9 @@ public interface StaffEntityDao {
     @Select
     StaffEntity selectById(Integer staffId);
 
+    @Select
+    StaffEntity selectByLoginId(String loginId);
+
     /**
      * @return the StaffEntity entity list
      */
@@ -42,6 +46,9 @@ public interface StaffEntityDao {
      */
     @Update
     int update(StaffEntity entity);
+
+    @Update(sqlFile = true)
+    int updateAllLoginIdAndPassword(String loginIdPrefix, String passwordDigest);
 
     /**
      * @param entity

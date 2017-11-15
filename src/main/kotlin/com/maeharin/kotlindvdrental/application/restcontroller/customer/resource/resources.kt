@@ -1,4 +1,4 @@
-package com.maeharin.kotlindvdrental.application.restcontroller.resource
+package com.maeharin.kotlindvdrental.application.restcontroller.customer.resource
 
 import com.maeharin.kotlindvdrental.domain.model.Actor
 import com.maeharin.kotlindvdrental.domain.model.Category
