@@ -11,10 +11,13 @@ class CategoryRepositoryDomaImpl(
     private val categoryEntityDao: CategoryEntityDao
 ): CategoryRepository {
     override fun findByFilmId(filmId: Int): List<Category>
-        = categoryEntityDao.selectByFilmId(filmId).map { _toDomainModel(it) }
+            = categoryEntityDao.selectByFilmId(filmId).map { _toDomainModel(it) }
 
     override fun findByIds(ids: List<Int>): List<Category>
-        = categoryEntityDao.selectByIds(ids).map { _toDomainModel(it) }
+            = categoryEntityDao.selectByIds(ids).map { _toDomainModel(it) }
+
+    override fun findAll(): List<Category>
+            = categoryEntityDao.selectAll().map { _toDomainModel(it) }
 
     private fun _toDomainModel(domaEntity: CategoryEntity): Category {
         return Category(

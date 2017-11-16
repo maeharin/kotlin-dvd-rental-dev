@@ -13,6 +13,9 @@ class LanguageRepositoryDomaImpl(
     override fun findById(id: Int): Language?
         = languageEntityDao.selectById(id)?.let { _toDomailModel(it) }
 
+    override fun findAll(): List<Language>
+        = languageEntityDao.selectAll().map { _toDomailModel(it) }
+
     private fun _toDomailModel(domaEntity: LanguageEntity): Language {
         return Language (
                 id = domaEntity.languageId,
