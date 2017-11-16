@@ -36,6 +36,9 @@ public interface ActorEntityDao {
     @Select
     List<ActorEntity> selectByIds(List<Integer> actorIds);
 
+    @Select
+    List<ActorEntity> selectByQuery(String query);
+
     /**
      * @param entity
      * @return affected rows

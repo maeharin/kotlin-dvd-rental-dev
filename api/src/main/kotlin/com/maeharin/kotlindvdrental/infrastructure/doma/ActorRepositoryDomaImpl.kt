@@ -16,6 +16,9 @@ class ActorRepositoryDomaImpl(
     override fun findByIds(ids: List<Int>): List<Actor>
             = actorEntityDao.selectByIds(ids).map { _toDomainModel(it) }
 
+    override fun search(query: String): List<Actor>
+            = actorEntityDao.selectByQuery(query).map { _toDomainModel(it) }
+
     private fun _toDomainModel(domaEntity: ActorEntity): Actor {
         return Actor(
                 id = domaEntity.actorId,

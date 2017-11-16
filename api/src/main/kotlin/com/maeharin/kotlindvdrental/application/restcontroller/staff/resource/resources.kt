@@ -47,12 +47,14 @@ data class ActorResource(
     val id: Int,
     val firstName: String,
     val lastName: String,
+    val fullName: String,
     val updatedAt: LocalDateTime
 ) {
     constructor(actor: Actor) : this(
         id = actor.id,
         firstName = actor.firstName,
         lastName = actor.lastName,
+        fullName = actor.fullName,
         updatedAt = actor.updatedAt
     )
 }

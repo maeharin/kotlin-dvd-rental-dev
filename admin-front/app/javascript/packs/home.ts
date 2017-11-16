@@ -6,12 +6,31 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue'
-import Home from '../src/Home.vue'
-import Element from 'element-ui'
+import VueRouter from 'vue-router'
+import App from '../src/App.vue'
+import ElementUI from 'element-ui'
+import locale from 'element-ui/lib/locale/lang/ja'
 
-Vue.use(Element)
+Vue.use(VueRouter)
+Vue.use(ElementUI, { locale })
+
+import FilmIndex from '../src/FilmIndex.vue'
+import FilmCreate from '../src/FilmCreate.vue'
+import FilmDetail from '../src/FilmDetail.vue'
+import CustomerIndex from '../src/CustomerIndex.vue'
+
+const router = new VueRouter({
+  routes:  [
+    { path: '/', component: FilmIndex },
+    { path: '/films/new', component: FilmCreate },
+    { path: '/films/:id', component: FilmDetail },
+    { path: '/customers', component: CustomerIndex },
+  ]
+})
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.appendChild(document.createElement('hello'))
-  new Vue(Home).$mount('hello')
+  new Vue({
+    router,
+    render: h => h(App),
+  }).$mount('#app')
 })

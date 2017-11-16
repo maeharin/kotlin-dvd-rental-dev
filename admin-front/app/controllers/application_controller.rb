@@ -40,6 +40,10 @@ class ApplicationController < ActionController::Base
     @film_api ||= DvdRentalStaffClient::FilmApi.new(_staff_api_client)
   end
 
+  def actor_api
+    @actor_api ||= DvdRentalStaffClient::ActorApi.new(_staff_api_client)
+  end
+
   private
 
   def _staff_api_client
