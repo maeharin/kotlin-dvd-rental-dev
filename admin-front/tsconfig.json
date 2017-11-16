@@ -1,0 +1,25 @@
+{
+  // see: https://vuejs.org/v2/guide/typescript.html#Recommended-Configuration
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es6", "dom"],
+    "module": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es5",
+    // strict: trueにすると、以下のオプションが全部trueになる
+    // --noImplicitAny, --noImplicitThis, --alwaysStrict and --strictNullChecks.
+    // ちなみに、noImplicitThisによってvueのcomponentのthisの型が取れるようになる
+    "strict": true
+  },
+  "exclude": [
+    "**/*.spec.ts",
+    "node_modules",
+    "vendor",
+    "public"
+  ],
+  "compileOnSave": false
+}
