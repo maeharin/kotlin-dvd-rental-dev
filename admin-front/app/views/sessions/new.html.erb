@@ -1,0 +1,13 @@
+<h1>管理画面ログイン</h1>
+
+<%= flash.each do |k, v| %>
+  <%= k %>
+  <%= v %>
+<% end %>
+
+<%= form_with url: login_path do |f| %>
+  username: <%= f.text_field :username %>
+  password: <%= f.password_field :password %>
+
+  <%= f.submit 'ログイン' %>
+<% end %>

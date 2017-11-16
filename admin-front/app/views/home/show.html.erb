@@ -1,0 +1,11 @@
+<h1>Kotlin dvd rental admin front</h1>
+
+<ul>
+<% @films.each do |film| %>
+  <li>
+    <%= film.title %>
+  </li>
+<% end %>
+</ul>
+
+<%= javascript_pack_tag 'hello_vue' %>
