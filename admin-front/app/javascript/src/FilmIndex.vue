@@ -61,7 +61,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import axios from 'axios'
 
 export default Vue.extend({
     data() {
@@ -71,7 +70,7 @@ export default Vue.extend({
     },
     async mounted() {
         try {
-            const res = await axios.get("/ajax/films")
+            const res = await this.$http.get("/ajax/films")
             this.films = res.data
         } catch (e) {
             alert(e)

@@ -7,17 +7,19 @@
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import axios from 'axios'
 import App from '../src/App.vue'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/ja'
-
-Vue.use(VueRouter)
-Vue.use(ElementUI, { locale })
-
 import FilmIndex from '../src/FilmIndex.vue'
 import FilmCreate from '../src/FilmCreate.vue'
 import FilmDetail from '../src/FilmDetail.vue'
 import CustomerIndex from '../src/CustomerIndex.vue'
+
+Vue.use(VueRouter)
+Vue.use(ElementUI, { locale })
+axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+Vue.prototype.$http = axios
 
 const router = new VueRouter({
   routes:  [

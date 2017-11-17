@@ -1,6 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :require_login
+
+  rescue_from DvdRentalStaffClient::ApiError do |ex|
+    if request.xhr?
+      render json: { errors: ex.message }, status: ex.code
+    else
+      case ex.code 
+      when 401,403 then
+        flash[:alert] = "認証エラー"
+        redirect_to login_path
+      end
+    end
+  end
   
   def require_login
     redirect_to login_path unless logged_in?

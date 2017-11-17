@@ -78,7 +78,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import axios from 'axios'
 
 export default Vue.extend({
     data() {
@@ -101,8 +100,8 @@ export default Vue.extend({
     },
     async mounted() {
         try {
-            this.languages = (await axios.get("/ajax/masterdatas/languages")).data
-            this.categories = (await axios.get("/ajax/masterdatas/categories")).data
+            this.languages = (await this.$http.get("/ajax/masterdatas/languages")).data
+            this.categories = (await this.$http.get("/ajax/masterdatas/categories")).data
         } catch (e) {
             alert(e)
         }
@@ -118,7 +117,7 @@ export default Vue.extend({
                     ))
                 })
 
-                const res = await axios.post("/ajax/films", {
+                const res = await this.$http.post("/ajax/films", {
                     authenticity_token: this.csrfToken,
                     film: this.form
                 })
@@ -133,7 +132,7 @@ export default Vue.extend({
 
             try {
                 this.isSearchActorLoading = true
-                const res = await axios.get("/ajax/actors/search", {
+                const res = await this.$http.get("/ajax/actors/search", {
                     params: {query: query}
                  })
                 this.actors = res.data

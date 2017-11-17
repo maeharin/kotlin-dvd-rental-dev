@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
 
   before_action :require_login
 
+  rescue_from DvdRentalCustomerClient::ApiError do |ex|
+    case ex.code 
+    when 401,403 then
+      flash[:alert] = "認証エラー"
+      redirect_to login_path
+    end
+  end
+
   def require_login
     redirect_to login_path unless logged_in?
   end
