@@ -1,9 +1,9 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1.51'
-		springBootVersion = '1.5.7.RELEASE'
+		kotlinVersion = '1.1.60'
+		springBootVersion = '1.5.8.RELEASE'
 		springBootDomaVersion = '1.1.1'
-		springSecurityOauth2Version = '2.1.1.RELEASE'
+		springSecurityOauth2Version = '2.2.0.RELEASE'
 		domaVersion = '2.17.0'
 		postgresqlVersion = '42.1.4'
 		domaGenVersion = '2.17.0'
