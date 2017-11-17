@@ -1,15 +1,16 @@
-package com.maeharin.kotlindvdrental.integration
+package com.maeharin.kotlindvdrental.integration.staff
 
+import com.maeharin.kotlindvdrental.integration.IntegrationTestBase
 import org.junit.Test
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
-class FilmRestAPIIntegrationTest : IntegrationTestBase() {
+class StaffFilmRestAPIIntegrationTest : IntegrationTestBase() {
     @Test
     fun shouldGetFilmById() {
-        val request = get("/api/v1/films/1")
+        val request = get("/api/v1/staff/films/1").asStaffUser(mockMvc)
 
         mockMvc.perform(request)
                 .andExpect(status().isOk())
@@ -17,7 +18,7 @@ class FilmRestAPIIntegrationTest : IntegrationTestBase() {
 
     @Test
     fun notFoundIfIdNotExists() {
-        val request = get("/api/v1/films/0")
+        val request = get("/api/v1/staff/films/0").asStaffUser(mockMvc)
 
         mockMvc.perform(request)
                 .andExpect(status().isNotFound())
@@ -40,7 +41,8 @@ class FilmRestAPIIntegrationTest : IntegrationTestBase() {
             }
         """.trimIndent()
 
-        val postRequest = post("/api/v1/films")
+        val postRequest = post("/api/v1/staff/films")
+                .asStaffUser(mockMvc)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json)
 
@@ -48,7 +50,7 @@ class FilmRestAPIIntegrationTest : IntegrationTestBase() {
                 .andExpect(status().isCreated())
                 .andReturn().response.contentAsString
 
-        val getRequest = get("/api/v1/films/${id}")
+        val getRequest = get("/api/v1/staff/films/${id}").asStaffUser(mockMvc)
 
         mockMvc.perform(getRequest)
                 .andExpect(status().isOk())
@@ -75,14 +77,15 @@ class FilmRestAPIIntegrationTest : IntegrationTestBase() {
             }
         """.trimIndent()
 
-        val putRequest = put("/api/v1/films/${id}")
+        val putRequest = put("/api/v1/staff/films/${id}")
+                .asStaffUser(mockMvc)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json)
 
         mockMvc.perform(putRequest)
                 .andExpect(status().isOk())
 
-        val getRequest = get("/api/v1/films/${id}")
+        val getRequest = get("/api/v1/staff/films/${id}").asStaffUser(mockMvc)
 
         mockMvc.perform(getRequest)
                 .andExpect(status().isOk())
