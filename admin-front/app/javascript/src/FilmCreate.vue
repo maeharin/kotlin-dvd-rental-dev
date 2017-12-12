@@ -78,19 +78,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { FilmRestParam, ActorResource, CategoryResource, LanguageResource } from '@kotlin-dvd-rental/staff-client'
 
 export default Vue.extend({
     data() {
         return {
             csrfToken: document.querySelector('meta[name="csrf-token"]')!.getAttribute('content'),
-            form: {
-                actorIds: [],
-                categoryIds: [],
-            },
-            actors: [],
+            form: {} as FilmRestParam,
+            actors: [] as ActorResource[],
             isSearchActorLoading: false,
-            languages: [],
-            categories: [],
+            languages: [] as LanguageResource[],
+            categories: [] as CategoryResource[],
             rules: {
                 title: [
                     { required: true, message: '必須項目です', trigger: 'blur' },

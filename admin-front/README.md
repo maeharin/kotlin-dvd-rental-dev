@@ -3,6 +3,7 @@
 ```
 $ bundle --path vendor/bundle 
 $ yarn install
+$ yarn link @kotlin-dvd-rental/staff-client
 $ ./bin/rails s -p 3001
 ```
 

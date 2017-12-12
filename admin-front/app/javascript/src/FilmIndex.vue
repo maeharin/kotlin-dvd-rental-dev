@@ -61,11 +61,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { FilmResource } from '@kotlin-dvd-rental/staff-client'
 
 export default Vue.extend({
     data() {
         return {
-            films: []
+            films: [] as FilmResource[],
         }
     },
     async mounted() {
@@ -84,7 +85,8 @@ export default Vue.extend({
             this.$router.push(`/films/${row.id}`)
         },
         onEditButtonClicked() {
-
+            // 補完が効くか試してみる
+            console.log(this.films.map(film => film.actors.map(actor => actor.firstName)).join(","))
         }
     }
 })

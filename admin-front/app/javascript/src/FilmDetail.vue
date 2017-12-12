@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-card>
+        <el-card v-if="film">
             <h1>{{ film.title }} ({{ film.releaseYear }})</h1>
             <table>
                 <tr>
@@ -42,16 +42,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { FilmResource } from '@kotlin-dvd-rental/staff-client'
 
 export default Vue.extend({
     data() {
         return {
             id: this.$route.params.id,
-            film: {
-                language: {},
-                actors: [],
-                categories: []
-            }
+            film: null as FilmResource | null
         }
     },
     async mounted() {

@@ -37,7 +37,7 @@ compileTestKotlin {
 }
 
 repositories {
-	jcenter()
+	mavenCentral()
 }
 
 configurations {
@@ -154,13 +154,21 @@ task domagen {
 task copySwaggerCodegen(type: Copy) {
     configurations {
         swaggerCodegen
+		swaggerCodegen2
     }
+
+	repositories {
+		jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+	}
 
     dependencies {
         swaggerCodegen "io.swagger:swagger-codegen-cli:2.2.3"
+		swaggerCodegen2 'io.swagger:swagger-codegen-cli:2.3.0-SNAPSHOT'
     }
 
     from configurations.swaggerCodegen
+	from configurations.swaggerCodegen2
 
     into 'swagger-codegen'
 }

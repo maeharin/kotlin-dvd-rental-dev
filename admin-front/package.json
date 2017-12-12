@@ -2,6 +2,7 @@
   "name": "kotlin-dvd-rental-admin-front",
   "private": true,
   "dependencies": {
+    "@kotlin-dvd-rental/staff-client": "file:../api/swagger-codegen/generated/typescript/staff-api/",
     "@rails/webpacker": "^3.0.2",
     "axios": "^0.17.1",
     "coffeescript": "1.12.7",

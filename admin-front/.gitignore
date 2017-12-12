@@ -21,3 +21,9 @@
 /public/packs
 /public/packs-test
 /node_modules
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
